@@ -10,7 +10,7 @@ I = [1 1 1];
 Z = [1 1 1];
 
 % the actual script
-maxZ = max(Z)*4; % evaluate until 2 times the position of the last coil
+maxZ = max(Z)*4; % evaluate until 4 times the position of the last coil
 step = 0.01; % arbitrary
 z = -maxZ:step:maxZ; % independant variable
 bz = symmetricCoilMagneticField(R, I, Z, z);
@@ -43,7 +43,7 @@ function bz = symmetricCoilMagneticField(R, I, Z, z)
         for i = 1:n
             inc = inc + (R(i).^2 * I(i).^2)./((Z(i) - dz).^2 + R(i).^2).^(3/2);
             % also add symmetric portion in the same cycle
-            inc = inc + (R(i).^2 * I(i).^2)./((-Z(i) - dz).^2 + R(i).^2).^(3/2);
+            inc = inc + (R(i).^2 * I(i).^2)./((Z(i) + dz).^2 + R(i).^2).^(3/2);
         end
         bz(k) = inc;
     end
