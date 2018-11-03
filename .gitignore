@@ -1,3 +1,9 @@
 *.asv
 ~*.docx
 *.tmp
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.synctex.gz
