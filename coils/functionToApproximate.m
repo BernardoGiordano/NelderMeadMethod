@@ -14,14 +14,22 @@ maxZ = max(Z)*2; % evaluate until 2 times the position of the last coil
 step = 0.01; % arbitrary
 z = -maxZ:step:maxZ; % independant variable
 bz = symmetricCoilMagneticField(R, I, Z, z);
+
 % plot results
 hold on
 grid on
-plot(z, bz);
-title('Magnetic field for N symmetric coils given Z, R and I')
+% y axis
+plot(z, bz, 'lineWidth', 1);
+y = [0 max(bz) * 1.25];
+x = [0 0];
+plot(x, y, 'color', 'k', 'lineWidth', 1);
+plot(0, y(2), '^', 'color', 'k', 'lineWidth', 1, 'MarkerFaceColor', 'k')
+
+% title('Magnetic field for N symmetric coils given Z, R and I')
 ylabel('Bz')
 xlabel('z')
-
+set(gca, 'xticklabel', []);
+set(gca, 'yticklabel', []);
 
 % function to evaluate magnetic field on the Z axis
 function bz = symmetricCoilMagneticField(R, I, Z, z)

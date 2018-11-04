@@ -29,7 +29,7 @@ le spire tranne che per una coppia.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{assets/figure1}
+	\includegraphics[width=12cm]{assets/figure1}
 	\caption{Sistema fisico posizionato nel piano $xyz$.}
 \end{figure}
 
@@ -37,12 +37,20 @@ le spire tranne che per una coppia.
 Il campo magnetico generato dalla corrente circolante nelle spire può essere
 valutato sull’asse utilizzando la legge di Biot-Savart. La legge di Biot-Savart
 ci permette di valutare il campo magnetico B prodotto in un punto dello spazio
-da una spira percorsa da corrente elettrica. Siccome il sistema è composto da 6
-spire, il campo magnetico complessivo si otterrà mediante sovrapposizione degli
-effetti di tutte le spire. \\
+da una spira percorsa da corrente elettrica.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{assets/figure2}
+	\caption{Schema di una spira concentrica all'asse $z$.}
+\end{figure}
+
+\noindent
 Il campo magnetico sull’asse di una spira caratterizzata da una corrente $I$,
 lunghezza $L$, raggio $R$ e posizione $z$, si valuta come
 \[dB_{z}=\frac{\mu_{0}IdL}{4\pi}\frac{R}{\left(z^{2}+R^{2}\right)^{3/2}}\]
+dove $\mu_{0}$ è la permeabilità magnetica nel vuoto,
+$\mu_{0}=4{\pi}10^{-7} H/m$. \\
 L’integrale di $dL$ risulta essere proprio la circonferenza della spira, ovvero
 $2{\pi}R$.
 Integrando quindi, si ricava la funzione del campo magnetico sull'asse
@@ -53,7 +61,7 @@ $i$-esima. \\
 Sia inoltre $n=6$ il numero complessivo delle spire facenti
 parte del sistema.
 Considerando adesso la sovrapposizione degli effetti di tutte le spire del
-sistema, e tenendo presente che le spire sono simmetriche rispetto al piano $xy$,
+sistema e tenendo presente che le spire sono simmetriche rispetto al piano $xy$,
 il campo magnetico complessivo sull’asse $z$ varrà
 
 \begin{align*}
@@ -61,6 +69,16 @@ il campo magnetico complessivo sull’asse $z$ varrà
 		&=\frac{\mu_{0}}{4{\pi}}\left(\sum_{i=1}^{n/2}\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)\\
 		&=\frac{\mu_{0}}{2}\left(\sum_{i=1}^{n/2}\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)
 \end{align*}
+\noindent
+L'obiettivo del progetto della spira mancante risulta essere
+la migliore approssimazione di un campo magnetico avente la
+seguente caratteristica
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{assets/figure3}
+	\caption{Campo magnetico sull'asse $z$ desiderato.}
+\end{figure}
 
 \begin{thebibliography}{9}
 	% \bibitem{id}Author\emph{title}[online]. Editor.
