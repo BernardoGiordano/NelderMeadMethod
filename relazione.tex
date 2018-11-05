@@ -3,6 +3,7 @@
 \usepackage{mathtools, nccmath}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{amsmath}
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\refname}{Bibliografia}
 
@@ -21,11 +22,10 @@ una spira.
 
 \section*{Descrizione del sistema fisico}
 
-Il sistema è composto da un certo numero di spire
-simmetriche (supporremo $n=6$) concentriche rispetto allo
-stesso asse $z$. I parametri di
-progetto, ovvero posizione, raggio e intensità di corrente, sono noti per tutte
-le spire tranne che per una coppia.
+Il sistema è composto da un certo numero di spire simmetriche (supporremo $n=6$)
+concentriche rispetto allo stesso asse $z$. I parametri di progetto, ovvero
+posizione, raggio e intensità di corrente, sono noti per tutte le spire tranne
+che per una coppia.
 
 \begin{figure}[H]
 	\centering
@@ -46,20 +46,20 @@ da una spira percorsa da corrente elettrica.
 \end{figure}
 
 \noindent
-Il campo magnetico sull’asse di una spira caratterizzata da una corrente $I$,
-lunghezza $L$, raggio $R$ e posizione $z$, si valuta come
+Il campo magnetico sull’asse $z$  di una spira caratterizzata da una corrente
+$I$, lunghezza $L$, raggio $R$ e posizione $Z$ (supponiamo, per
+semplicità, posizionata in $Z=0$), si valuta come
+% ************************* AGGIUSTARE z in (Z-z) **************************
 \[dB_{z}=\frac{\mu_{0}IdL}{4\pi}\frac{R}{\left(z^{2}+R^{2}\right)^{3/2}}\]
-dove $\mu_{0}$ è la permeabilità magnetica nel vuoto,
-$\mu_{0}=4{\pi}10^{-7} H/m$. \\
+dove $\mu_{0}$ è la permeabilità magnetica nel vuoto, $\mu_{0}=4{\pi}10^{-7}
+H/m$. \\
 L’integrale di $dL$ risulta essere proprio la circonferenza della spira, ovvero
-$2{\pi}R$.
-Integrando quindi, si ricava la funzione del campo magnetico sull'asse
+$2{\pi}R$. Integrando quindi, si ricava la funzione del campo magnetico
+sull'asse
 \[B_{z}=\frac{\mu_{0}}{4\pi}\frac{2{\pi}R^{2}I}{\left(z^{2}+R^{2}\right)^{3/2}}=\frac{\mu_{0}}{2}\frac{R^{2}I}{\left(z^{2}+R^{2}\right)^{3/2}}\]
-Siano $Z_{i}$, $R_{i}$ e $I_{i}$ rispettivamente la
-posizione, il raggio e la corrente relative alla spira
-$i$-esima. \\
-Sia inoltre $n=6$ il numero complessivo delle spire facenti
-parte del sistema.
+Siano $Z_{i}$, $R_{i}$ e $I_{i}$ rispettivamente la posizione, il raggio e la
+corrente relative alla spira $i$-esima. \\
+Sia inoltre $n=6$ il numero complessivo delle spire facenti parte del sistema.
 Considerando adesso la sovrapposizione degli effetti di tutte le spire del
 sistema e tenendo presente che le spire sono simmetriche rispetto al piano $xy$,
 il campo magnetico complessivo sull’asse $z$ varrà
@@ -70,15 +70,35 @@ il campo magnetico complessivo sull’asse $z$ varrà
 		&=\frac{\mu_{0}}{2}\left(\sum_{i=1}^{n/2}\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)
 \end{align*}
 \noindent
-L'obiettivo del progetto della spira mancante risulta essere
-la migliore approssimazione di un campo magnetico avente la
-seguente caratteristica
+L'obiettivo del progetto della spira mancante risulta essere la migliore
+approssimazione di un campo magnetico avente la seguente caratteristica
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{assets/figure3}
 	\caption{Campo magnetico sull'asse $z$ desiderato.}
 \end{figure}
+\noindent
+Sia adesso $B_{z}$ il campo magnetico generato dalla sovrapposizione delle spire
+del sistema da progettare, e $\tilde{B_{z}}$ il campo magnetico desiderato. Al
+fine da ottenere una discrepanza più piccola possibile, è di nostro interesse lo
+studio della funzione
+\[|B_{z}-\tilde{B_{z}}|\] dove $B_{z}$ è la funzione del campo magnetico da
+progettare e $\tilde{B_{z}}$ è quella del campo desiderato. \\
+Siccome i parametri di progetto delle spire 1 e 3 (e, quindi, delle rispettive
+spire simmetriche) sono noti ed esattamente uguali a quelli del sistema
+desiderato, la suddetta differenza in norma si scriverà come
+
+\begin{equation}
+	\begin{split}
+	|B_{z}-\tilde{B_{z}}|
+		=& \Bigl|\frac{\mu_{0}}{2}(\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}})- \\
+		 & \frac{\mu_{0}}{2}(\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}})\Bigr| \\
+		=& \frac{\mu_{0}}{2}\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
+		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|
+	\end{split} 
+\end{equation}
+\noindent
 
 \begin{thebibliography}{9}
 	% \bibitem{id}Author\emph{title}[online]. Editor.
