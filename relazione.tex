@@ -7,6 +7,7 @@
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\refname}{Bibliografia}
 
+
 \begin{document}
 %Header
 \noindent
@@ -83,7 +84,7 @@ Sia adesso $B_{z}$ il campo magnetico generato dalla sovrapposizione delle spire
 del sistema da progettare, e $\tilde{B_{z}}$ il campo magnetico desiderato. Al
 fine da ottenere una discrepanza più piccola possibile, è di nostro interesse lo
 studio della funzione
-\[|B_{z}-\tilde{B_{z}}|\] dove $B_{z}$ è la funzione del campo magnetico da
+\[||B_{z}-\tilde{B_{z}}||\] dove $B_{z}$ è la funzione del campo magnetico da
 progettare e $\tilde{B_{z}}$ è quella del campo desiderato. \\
 Siccome i parametri di progetto delle spire 1 e 3 (e, quindi, delle rispettive
 spire simmetriche) sono noti ed esattamente uguali a quelli del sistema
@@ -91,14 +92,23 @@ desiderato, la suddetta differenza in norma si scriverà come
 
 \begin{equation}
 	\begin{split}
-	|B_{z}-\tilde{B_{z}}|
-		=& \Bigl|\frac{\mu_{0}}{2}(\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}})- \\
-		 & \frac{\mu_{0}}{2}(\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}})\Bigr| \\
-		=& \frac{\mu_{0}}{2}\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
-		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|
+	||B_{z}-\tilde{B_{z}}||
+		=& \Bigl|\Bigl|\frac{\mu_{0}}{2}(\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}})- \\
+		 & \frac{\mu_{0}}{2}(\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}})\Bigr|\Bigr| \\
+		=& \frac{\mu_{0}}{2}\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
+		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|
 	\end{split} 
 \end{equation}
 \noindent
+% da aggiustare
+Possiamo dunque considerare la 1 come \emph{la funzione di costo} del nostro problema.
+
+\section*{Normalizzazione e funzione di costo}
+
+La normalizzazione è l'operazione che dato un vettore lo porta ad avere una
+norma unitaria. Possiamo normalizzare rispetto al rapporto $\frac{\mu_{0}}{2}$,   
+\section*{Analisi dei parametri}
+
 
 \begin{thebibliography}{9}
 	% \bibitem{id}Author\emph{title}[online]. Editor.
