@@ -110,6 +110,20 @@ norma unitaria. Possiamo normalizzare rispetto al rapporto $\frac{\mu_{0}}{2}$,
 % su cosa cazzo normalizziamo?  
 \section*{Analisi dei parametri}
 
+\section* {Ricerca del minimo}
+
+L'algoritmo di ricerca del minimo fa uso del concetto di simplesso, cioè un politopo di N+1 vertici 
+in N dimensioni, ovvero: un segmento di retta in una dimensione, un triangolo in due 
+dimensioni, un tetraedro in tre dimensioni. Il metodo ci permette di limitare la
+ricerca della soluzione ottima ai vertici del politopo. La ricerca avviene 
+attraverso il movimento del politopo, il politopo può:\\   
+-Ribaltarsi:    valuto il valore della funzione nei 3 vertici, idividuo il vertice
+	con il valore 'peggiore' tengo fermo gli altri due e ribalto quello 
+	'peggiore' a banda opposta(caso N=2). \\
+-Contrarsi:     se un vertice del politopo rimane più a lungo di un numero 
+	specifico di iterazioni M (M fissato) il politopo viene contratto.\\
+Il simplesso è un metodo zero-th, ache se non faccio uso di derivate sto stimando in qualche
+modo una direzione di discesa.
 
 \section* {Ricerca del minimo}
 
