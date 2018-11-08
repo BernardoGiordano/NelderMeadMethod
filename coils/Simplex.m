@@ -1,4 +1,5 @@
 classdef Simplex
+
 properties
     f_objective = 0;
     bounds = [];
@@ -13,11 +14,13 @@ properties
 end
     
 methods
+    % object constructor
     function obj = Simplex(f_objective, bounds, stop_conditions, start_conditions)
         obj.f_objective = f_objective;
-        obj.bounds=bounds;
-        obj.stop_conditions=stop_conditions;
-        obj.start_conditions=start_conditions;
+        obj.bounds = bounds;
+        obj.stop_conditions = stop_conditions;
+        obj.start_conditions = start_conditions;
+        % plot setup
         view(3)
         hold on
     end
@@ -45,7 +48,7 @@ methods
 
             %draw the plane with the iso-level colors of the function
             %computed in its coordinates
-            colormap(jet);
+            colormap(hot);
             surf(X, Y, Z, 'CData', reshape(V(j,:,:), [length(X), length(Y)]), 'FaceAlpha', 0.3, 'LineStyle', 'none', 'FaceColor', 'interp');
         end
     end

@@ -11,17 +11,21 @@ hR = 0.8;
 hZ = 0.9;
 X = [hI hR hZ];
 
-
-z = -2:0.01:2;
+% objective function
+z = -4:0.01:4;
 fobj = @(x)(norm(Bz(x, z) - Bz(X, z), 2));
-obj = Simplex(fobj);
-plot3(0.5, 0.8, 0.9, '^', 'color', 'w');
+
+% simplex algorythm
+obj = Simplex(fobj, [], [], []);
 obj.draw();
 
-function res = Bz(V, z)
+% plot ideal minimum
+plot3(X(1), X(2), X(3), '.', 'color', 'w', 'lineWidth', 4);
+
+function res = Bz(X, z)
     global mu0
-    I = V(1);
-    R = V(2);
-    Z = V(3);
+    I = X(1);
+    R = X(2);
+    Z = X(3);
     res = (mu0/2)*(((I*R.^2)./(((Z-z).^2+R.^2).^(3/2))) + ((I*R.^2)./(((Z+z).^2+R.^2).^(3/2))));
 end
