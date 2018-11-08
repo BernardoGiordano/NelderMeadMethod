@@ -16,8 +16,9 @@ z = -4:0.01:4;
 fobj = @(x)(norm(Bz(x, z) - Bz(X, z), 2));
 
 % simplex algorythm
-obj = Simplex(fobj, [], [], []);
-obj.draw();
+stop_conditions = struct ('step', 1000, 'minArea', 1e-5, 'minHalving', 1e-5, 'minMargin', 1e-5);
+start_conditions = struct ('start', [0.4, 0.4, 0.4], 'area', 10);
+obj = Simplex(fobj, [], stop_conditions, start_conditions);
 
 % plot ideal minimum
 plot3(X(1), X(2), X(3), '.', 'color', 'w', 'lineWidth', 4);

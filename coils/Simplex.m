@@ -3,8 +3,8 @@ classdef Simplex
 properties
     f_objective = 0;
     bounds = [];
-    stop_conditions = struct ('step', [], 'minArea', [], 'halving', [], 'margin', []);
-    start_conditions = struct ('start',[0,0,0],'area',[]);
+    stop_conditions = struct ('step', 100, 'minArea', 1e-5, 'minHalving', 1e-2, 'minMargin', 1e-5);
+    start_conditions = struct ('start', [0,0,0], 'area', 1);
     % si definisce prima il campo e poi il contenuto, es. ('step',[])
     % [] = contenuto vuoto
     % stop_conditions(1).step = 100; attribuisce un valore nella posizione 1 
@@ -23,20 +23,26 @@ methods
         % plot setup
         view(3)
         hold on
+        % draw f objective
+        obj.draw(f_objective);
+        % draw bounds
+        for bound = bounds
+            obj.draw(bound);
+        end
     end
     
-    %void draw
-    function draw(obj)
+    %draws a generic 3D function as a heatmap 
+    function draw(obj, f)
         X = -obj.field:obj.field/obj.slices:obj.field;
         Y = -obj.field:obj.field/obj.slices:obj.field;
         Z = -obj.field:obj.field/obj.slices:obj.field;
         V = zeros(obj.slices, length(X), length(Y));
 
-        %calculates the objective function values in a 3-dimensional grid
+        %calculates the function values in a 3-dimensional grid
         for k = 1:length(Z)
             for i = 1:length(Y)
                 for j = 1:length(X)
-                    V(k, i, j) = obj.f_objective([X(j) Y(i) Z(k)]);
+                    V(k, i, j) = f([X(j) Y(i) Z(k)]);
                 end
             end
         end
