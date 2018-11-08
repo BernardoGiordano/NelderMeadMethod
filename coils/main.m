@@ -14,8 +14,10 @@ X = [hI hR hZ];
 % objective function
 z = -4:0.01:4;
 fobj = @(x)(norm(Bz(x, z) - Bz(X, z), 2));
+bound1 = @(x)(x(1).^2+x(2).^2+x(3).^2);
 
 % simplex algorythm
+bounds = {bound1};
 stop_conditions = struct ('step', 1000, 'minArea', 1e-5, 'minHalving', 1e-5, 'minMargin', 1e-5);
 start_conditions = struct ('start', [0.4, 0.4, 0.4], 'area', 10);
 obj = Simplex(fobj, [], stop_conditions, start_conditions);

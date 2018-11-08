@@ -24,9 +24,9 @@ methods
         view(3)
         hold on
         % draw f objective
-        obj.draw(f_objective);
+        % obj.draw(f_objective);
         % draw bounds
-        for bound = bounds
+        for bound = obj.bounds
             obj.draw(bound);
         end
     end
