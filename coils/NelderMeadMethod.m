@@ -9,6 +9,7 @@ properties (Access = private)
     slices = 20;
     func_counter = 0;
     polytope = {};
+    result = struct('halvings', 0, 'flips', 0)
 end
     
 methods
@@ -27,7 +28,10 @@ methods
 
         % setup first simplex
         l = sqrt(4*this.start_conditions.area/sqrt(3));
-        this.polytope{end+1} = bsxfun(@plus, l.*this.simplexCoordinates(3)./1.633, this.start_conditions.start);
+        this.polytope{end+1} = bsxfun(@plus, l.*this.simplexCoordinates(3), this.start_conditions.start);
+        
+        % compute algorythm
+        this.loop();
         
         % draw f objective
         this.plotFunction(this.f_objective, false);
@@ -39,6 +43,77 @@ methods
         for k = 1:length(this.polytope)
             this.drawSimplex(this.polytope{k}, 'white')
         end
+        % display results
+        disp(this.result);
+    end
+    
+    function loop(this)
+        % 1) set penality for vertices out of bounds
+        % 2) test flipping loop condition
+        % 2.yes.1) find minimum
+        % 2.yes.2) halve
+        % 2.no.1) find maximum
+        % 2.no.2 flip
+        % 3) detect stop condition
+        shouldContinue = true;
+        while shouldContinue
+            penality = this.getPenality(this.polytope{end});
+            if this.isFlippingForever
+
+            else
+                j = this.findMaximumVertex(penality);
+                S = this.flip(j);
+                this.polytope{end+1} = S;
+            end
+            
+            % check stop conditions
+            if this.result.flips >= this.stop_conditions.steps
+                % TODO: check more stop conditions
+                shouldContinue = false;
+            end
+        end
+    end
+    
+    % returns flipping loop condition
+    function v = isFlippingForever(this)
+        % TODO
+        v = false;
+    end
+    
+    % returns the penality array for a given simplex
+    function p = getPenality(this, V)
+        p = ones(1, 4);
+        for j = length(this.bounds)
+            for k = length(V)
+                if (this.bounds{j}(V(k, :)) < 0)
+                    p(1, k) = p(1, k)*100;
+                end
+            end
+        end
+    end
+    
+    % returns the maximum vertex of the last simplex
+    function i = findMaximumVertex(this, penality)
+        fval = zeros(1, 4);
+        for i = 1:4
+            fval(i) = this.evaluate(this.f_objective, this.polytope{end}(i, :))*penality(i);
+        end
+        [~, i] = max(fval);
+    end
+    
+    % flips the j-th vertex of the last simplex in the polytope array 
+    function s = flip(this, j)
+        s = this.polytope{end};
+        c = this.centroid(s);
+        h = this.simplexHeight(s);
+        % find direction of jth_vertex - centroid vector
+        v = c - s(j, :);
+        % get versor of said vector
+        v = v/norm(v);
+        % jth' vertex = jth vertex + 2*h*versor
+        s(j, :) = s(j, :) + 2*h.*v;
+        % increment flips counter
+        this.result.flips = this.result.flips + 1;
     end
     
     function V = evaluate(this, f, v)
@@ -91,13 +166,23 @@ methods
         end
         s = norm(x(1:n, 1));
         x(1:n, 1:n+1) = x(1:n, 1:n+1)/s;
-        x = x';
+        x = x'./1.633;
     end
     
     % draws a simplex
     function drawSimplex(this, P, color)
         f = [1 2 3; 1 2 4; 1 3 4; 2 3 4];
         patch('Faces', f ,'Vertices', P(:, 1:3), 'EdgeColor', 'k', 'FaceColor', color, 'LineWidth', 1.5, 'FaceAlpha', 0.7);
+    end
+    
+    % returns the centroid of a regular tetrahedron
+    function x = centroid(this, t)
+        x = [sum(t(:, 1))/4 sum(t(:, 2))/4 sum(t(:, 3))/4];
+    end
+    
+    % returns the height of a regular tetrahedron
+    function h = simplexHeight(this, P)
+        h = sqrt(6)/3.*norm(P(1, :) - P(2, :));
     end
 end
     
