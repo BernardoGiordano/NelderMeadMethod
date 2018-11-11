@@ -20,11 +20,12 @@ bound2 = @(x)(2*x(1)+x(2)-x(3));
 % simplex algorythm
 bounds = {bound1, bound2};
 stop_conditions = struct('steps', 1000, 'minArea', 1e-5, 'minHalving', 1e-5, 'minMargin', 1e-5);
-start_conditions = struct('start', [0.4, 0.4, 0.4], 'area', 10);
+start_conditions = struct('start', [0.0, 0.0, 0.0], 'area', 0.5);
 obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions);
 
 % plot ideal minimum
 plot3(X(1), X(2), X(3), '.', 'color', 'w', 'lineWidth', 4);
+plot3(0, 0, 0, '.', 'color', 'w', 'lineWidth', 8);
 
 function res = Bz(X, z)
     global mu0
