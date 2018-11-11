@@ -3,7 +3,7 @@ classdef NelderMeadMethod < handle
 properties (Access = private)
     f_objective = [];
     bounds = {};
-    stop_conditions = struct('steps', 100, 'minArea', 1e-5, 'minHalving', 1e-2, 'minMargin', 1e-5);
+    stop_conditions = struct('maxFlips', 100, 'minArea', 1e-5, 'minHalving', 1e-2, 'minMargin', 1e-5);
     start_conditions = struct('start', [0 0 0], 'area', 1);
     range = 1;
     slices = 20;
@@ -58,8 +58,10 @@ methods
         shouldContinue = true;
         while shouldContinue
             penality = this.getPenality(this.polytope{end});
-            if this.isFlippingForever
-
+            if this.isFlippingForever()
+                j = this.findMinimumVertex(penality);
+                S = this.halve(j);
+                this.polytope{end+1} = S;
             else
                 j = this.findMaximumVertex(penality);
                 S = this.flip(j);
@@ -67,17 +69,30 @@ methods
             end
             
             % check stop conditions
-            if this.result.flips >= this.stop_conditions.steps
+            if this.result.flips >= this.stop_conditions.maxFlips
                 % TODO: check more stop conditions
                 shouldContinue = false;
             end
         end
     end
     
-    % returns flipping loop condition
+    % returns if flipping loop condition occurred
     function v = isFlippingForever(this)
-        % TODO
         v = false;
+        n = 8;
+        if length(this.polytope) > n
+            subset = this.polytope(end-n+1:end);
+            for j = 1:n
+                for k = 1:n
+                    if j ~= k
+                        if cell2mat(subset(k)) == cell2mat(subset(j))
+                            v = true;
+                            return
+                        end
+                    end
+                end
+            end
+        end
     end
     
     % returns the penality array for a given simplex
@@ -101,6 +116,15 @@ methods
         [~, i] = max(fval);
     end
     
+    % returns the minimum vertex of the last simplex
+    function i = findMinimumVertex(this, penality)
+        fval = zeros(1, 4);
+        for i = 1:4
+            fval(i) = this.evaluate(this.f_objective, this.polytope{end}(i, :))*penality(i);
+        end
+        [~, i] = min(fval);
+    end
+    
     % flips the j-th vertex of the last simplex in the polytope array 
     function s = flip(this, j)
         s = this.polytope{end};
@@ -114,6 +138,17 @@ methods
         s(j, :) = s(j, :) + 2*h.*v;
         % increment flips counter
         this.result.flips = this.result.flips + 1;
+    end
+    
+    % halve the last simplex keeping the j-th vertex
+    function s = halve(this, j)
+        s = this.polytope{end};
+        for i = 1:4
+           if i ~= j
+              s(i, :) = (s(i, :)+s(j, :))/2; 
+           end
+        end
+        this.result.halvings = this.result.halvings + 1;
     end
     
     function V = evaluate(this, f, v)

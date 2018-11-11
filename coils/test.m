@@ -13,19 +13,18 @@ X = [hI hR hZ];
 
 % objective function
 z = -4:0.01:4;
-fobj = @(x)(norm(Bz(x, z) - Bz(X, z), 2));
+fobj = @(x)(norm(Bz(x, z) - Bz(X, z)));
 bound1 = @(x)((x(1)+1)^2+(x(2)-1)^2+(x(3)-1)^2 -1.35^2);
 bound2 = @(x)(2*x(1)+x(2)-x(3));
 
 % simplex algorythm
 bounds = {bound1, bound2};
-stop_conditions = struct('steps', 1000, 'minArea', 1e-5, 'minHalving', 1e-5, 'minMargin', 1e-5);
-start_conditions = struct('start', [0.0, 0.0, 0.0], 'area', 0.5);
+stop_conditions = struct('maxFlips', 1000, 'minArea', 1e-5, 'minHalving', 1e-5, 'minMargin', 1e-5);
+start_conditions = struct('start', [0.4, 0.1, 0], 'area', 0.025);
 obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions);
 
 % plot ideal minimum
 plot3(X(1), X(2), X(3), '.', 'color', 'w', 'lineWidth', 4);
-plot3(0, 0, 0, '.', 'color', 'w', 'lineWidth', 8);
 
 function res = Bz(X, z)
     global mu0
