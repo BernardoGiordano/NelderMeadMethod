@@ -1,13 +1,11 @@
 classdef NelderMeadMethod < handle
 
 properties (Access = private)
+    settings = struct('range', 1, 'slices', 20, 'func_counter', 0, 'dimension', 3);
+    stop_conditions = struct('maxFlips', 100, 'minHalving', 1e-2, 'minMargin', 1e-5);
+    start_conditions = struct('start', [0 0 0], 'length', 1);
     f_objective = [];
     bounds = {};
-    stop_conditions = struct('maxFlips', 100, 'minArea', 1e-5, 'minHalving', 1e-2, 'minMargin', 1e-5);
-    start_conditions = struct('start', [0 0 0], 'area', 1);
-    range = 1;
-    slices = 20;
-    func_counter = 0;
     polytope = {};
     result = struct('halvings', 0, 'flips', 0)
 end
@@ -19,16 +17,16 @@ methods
         this.bounds = bounds;
         this.stop_conditions = stop_conditions;
         this.start_conditions = start_conditions;
+        this.settings.dimension = length(this.start_conditions.start);
         
         % plot setup
-        view(3)
+        view(this.settings.dimension)
         hold on
         colormap(hot)
         axis equal
 
         % setup first simplex
-        l = sqrt(4*this.start_conditions.area/sqrt(3));
-        this.polytope{end+1} = bsxfun(@plus, l.*this.simplexCoordinates(3), this.start_conditions.start);
+        this.polytope{end+1} = bsxfun(@plus, this.start_conditions.length.*this.simplexCoordinates(this.settings.dimension), this.start_conditions.start);
         
         % compute algorythm
         this.loop();
@@ -36,8 +34,10 @@ methods
         % draw f objective
         this.plotFunction(this.f_objective, false);
         % draw bounds
-        for k = 1:length(this.bounds)
-            this.plotFunction(this.bounds{k}, true);
+        if ~isempty(this.bounds) > 0
+            for k = 1:length(this.bounds)
+                this.plotFunction(this.bounds{k}, true);
+            end
         end
         % draw polytope
         for k = 1:length(this.polytope)
@@ -97,11 +97,13 @@ methods
     
     % returns the penality array for a given simplex
     function p = getPenality(this, V)
-        p = ones(1, 4);
-        for j = length(this.bounds)
-            for k = length(V)
-                if (this.bounds{j}(V(k, :)) < 0)
-                    p(1, k) = p(1, k)*100;
+        p = ones(1, length(V));
+        if ~isempty(this.bounds)
+            for j = length(this.bounds)
+                for k = length(V)
+                    if (this.bounds{j}(V(k, :)) < 0)
+                        p(1, k) = p(1, k)*100;
+                    end
                 end
             end
         end
@@ -109,8 +111,8 @@ methods
     
     % returns the maximum vertex of the last simplex
     function i = findMaximumVertex(this, penality)
-        fval = zeros(1, 4);
-        for i = 1:4
+        fval = zeros(1, length(penality));
+        for i = 1:length(penality)
             fval(i) = this.evaluate(this.f_objective, this.polytope{end}(i, :))*penality(i);
         end
         [~, i] = max(fval);
@@ -118,8 +120,8 @@ methods
     
     % returns the minimum vertex of the last simplex
     function i = findMinimumVertex(this, penality)
-        fval = zeros(1, 4);
-        for i = 1:4
+        fval = zeros(1, length(penality));
+        for i = 1:length(penality)
             fval(i) = this.evaluate(this.f_objective, this.polytope{end}(i, :))*penality(i);
         end
         [~, i] = min(fval);
@@ -143,7 +145,7 @@ methods
     % halve the last simplex keeping the j-th vertex
     function s = halve(this, j)
         s = this.polytope{end};
-        for i = 1:4
+        for i = 1:length(s)
            if i ~= j
               s(i, :) = (s(i, :)+s(j, :))/2; 
            end
@@ -157,7 +159,7 @@ methods
     
     function plotFunction(this, f, isBound)
         % divide plot in blocks
-        X = -this.range:this.range/this.slices:this.range;
+        X = -this.settings.range:this.settings.range/this.settings.slices:this.settings.range;
         Y = X;
         Z = X;
         len = length(X);
@@ -181,10 +183,10 @@ methods
             end
             % properly offset the slice according to the number of function
             % passed via constructor
-            K = ones(len, len)*(k-len/2)*(this.range/this.slices)+((this.range/this.slices)/(length(this.bounds)+length(this.f_objective)))*(this.func_counter);
+            K = ones(len, len)*(k-len/2)*(this.settings.range/this.settings.slices)+((this.settings.range/this.settings.slices)/(length(this.bounds)+length(this.f_objective)))*(this.settings.func_counter);
             surf(X, Y, K, 'CData', V, 'FaceAlpha', 0.3, 'LineStyle', 'none', 'FaceColor', 'interp');
         end
-        this.func_counter = this.func_counter + 1;
+        this.settings.func_counter = this.settings.func_counter + 1;
     end
 
     % computes the Cartesian coordinates of a simplex with centroid of 0
@@ -193,8 +195,7 @@ methods
         for j = 1:n
             x(j, j) = 1.0;
         end
-        a = (1.0-sqrt(1.0+n))/n;
-        x(1:n, n+1) = a;
+        x(1:n, n+1) = (1.0-sqrt(1.0+n))/n;
         c(1:n, 1) = sum(x(1:n, 1:n+1), 2)/(n+1);
         for j = 1:n+1
             x(1:n, j) = x(1:n, j) - c(1:n, 1);
@@ -207,12 +208,12 @@ methods
     % draws a simplex
     function drawSimplex(this, P, color)
         f = [1 2 3; 1 2 4; 1 3 4; 2 3 4];
-        patch('Faces', f ,'Vertices', P(:, 1:3), 'EdgeColor', 'k', 'FaceColor', color, 'LineWidth', 1.5, 'FaceAlpha', 0.7);
+        patch('Faces', f ,'Vertices', P, 'EdgeColor', 'k', 'FaceColor', color, 'LineWidth', 1.5, 'FaceAlpha', 0.7);
     end
     
     % returns the centroid of a regular tetrahedron
     function x = centroid(this, t)
-        x = [sum(t(:, 1))/4 sum(t(:, 2))/4 sum(t(:, 3))/4];
+        x = [sum(t(:, 1))/length(t) sum(t(:, 2))/length(t) sum(t(:, 3))/length(t)];
     end
     
     % returns the height of a regular tetrahedron

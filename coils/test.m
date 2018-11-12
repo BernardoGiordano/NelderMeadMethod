@@ -19,8 +19,8 @@ bound2 = @(x)(2*x(1)+x(2)-x(3));
 
 % simplex algorythm
 bounds = {bound1, bound2};
-stop_conditions = struct('maxFlips', 1000, 'minArea', 1e-5, 'minHalving', 1e-5, 'minMargin', 1e-5);
-start_conditions = struct('start', [0.4, 0.1, 0], 'area', 0.025);
+stop_conditions = struct('maxFlips', 1000, 'minHalving', 1e-5, 'minMargin', 1e-5);
+start_conditions = struct('start', [0.4, 0.1, 0], 'length', 0.25);
 obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions);
 
 % plot ideal minimum
