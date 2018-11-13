@@ -18,10 +18,11 @@ bound1 = @(x)((x(1)+1)^2+(x(2)-1)^2+(x(3)-1)^2 -1.35^2);
 bound2 = @(x)(2*x(1)+x(2)-x(3));
 
 % simplex algorythm
-bounds = {bound1, bound2};
+settings = struct('range', 4, 'step',0.01, 'slices', 20, 'func_counter', 0, 'dimension', 3);
 stop_conditions = struct('maxFlips', 1000, 'minHalving', 1e-5, 'minMargin', 1e-5);
 start_conditions = struct('start', [0.4, 0.1, 0], 'length', 0.25);
-obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions);
+bounds = {bound1, bound2};
+obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings);
 
 % plot ideal minimum
 plot3(X(1), X(2), X(3), '.', 'color', 'w', 'lineWidth', 4);

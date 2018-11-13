@@ -1,7 +1,7 @@
 classdef NelderMeadMethod < handle
 
 properties (Access = private)
-    settings = struct('range', 1, 'slices', 20, 'func_counter', 0, 'dimension', 3);
+    settings = struct('range', 4, 'step',0.01, 'slices', 20, 'func_counter', 0, 'dimension', 3);
     stop_conditions = struct('maxFlips', 100, 'minHalving', 1e-2, 'minMargin', 1e-5);
     start_conditions = struct('start', [0 0 0], 'length', 1);
     f_objective = [];
@@ -12,12 +12,12 @@ end
     
 methods
     % object constructor
-    function this = NelderMeadMethod(f_objective, bounds, stop_conditions, start_conditions)
+    function this = NelderMeadMethod(f_objective, bounds, stop_conditions, start_conditions, settings)
         this.f_objective = f_objective;
         this.bounds = bounds;
         this.stop_conditions = stop_conditions;
         this.start_conditions = start_conditions;
-        this.settings.dimension = length(this.start_conditions.start);
+        this.settings = settings; 
         
         % plot setup
         view(this.settings.dimension)
