@@ -1,9 +1,9 @@
 classdef NelderMeadMethod < handle
 
 properties (Access = private)
-    settings = struct('range', 4, 'step',0.01, 'slices', 20, 'func_counter', 0, 'dimension', 3);
+    settings = struct('range', 4, 'step', 0.01, 'slices', 10, 'func_counter', 0, 'dimension', 3);
     stop_conditions = struct('maxFlips', 100, 'minHalving', 1e-2, 'minMargin', 1e-5);
-    start_conditions = struct('start', [0 0 0], 'length', 1);
+    start_conditions = struct('start', [0 0 0], 'length', 0.25);
     f_objective = [];
     bounds = {};
     polytope = {};
@@ -20,9 +20,9 @@ methods
         this.settings = settings; 
         
         % plot setup
-        view(this.settings.dimension)
+        view(135,20)
         hold on
-        colormap(hot)
+        colormap(jet)
         axis equal
 
         % setup first simplex
@@ -41,7 +41,7 @@ methods
         end
         % draw polytope
         for k = 1:length(this.polytope)
-            this.drawSimplex(this.polytope{k}, 'white')
+            this.drawSimplex(this.polytope{k}, 'w')
         end
         % display results
         disp(this.result);
@@ -99,8 +99,8 @@ methods
     function p = getPenality(this, V)
         p = ones(1, length(V));
         if ~isempty(this.bounds)
-            for j = length(this.bounds)
-                for k = length(V)
+            for j = 1:length(this.bounds)
+                for k = 1:length(V)
                     if (this.bounds{j}(V(k, :)) < 0)
                         p(1, k) = p(1, k)*100;
                     end
@@ -159,19 +159,48 @@ methods
     
     function plotFunction(this, f, isBound)
         % divide plot in blocks
-        X = -this.settings.range:this.settings.range/this.settings.slices:this.settings.range;
-        Y = X;
-        Z = X;
+        if this.settings.dimension == 3
+            X = -this.settings.range:this.settings.range/this.settings.slices:this.settings.range;
+            Y = X;
+            Z = X;
+        elseif this.settings.dimension == 2
+            % TODO: change hardcoded step to this.settings.step
+            [X, Y] = meshgrid(-this.settings.range:0.01:this.settings.range);
+        end
         len = length(X);
         
-        for k = 1:len
+        % 3D plot
+        if this.settings.dimension == 3
+            for k = 1:len
+                V = zeros(len, len);
+                for i = 1:len
+                    for j = 1:len
+                        if isBound
+                            V(i, j) = f([X(i) Y(j) Z(k)]) < 0;
+                        else
+                            V(i, j) = f([X(i) Y(j) Z(k)]);
+                        end
+                    end
+                end
+                if isBound
+                    % avoid cluttering the figure by plotting 0 values
+                    V(V == 0) = NaN;
+                    % zero the non-zero values to darken them in the heatmap
+                    V = V.*0;
+                end
+                % properly offset the slice according to the number of function
+                % passed via constructor
+                K = ones(len, len)*(k-len/2)*(this.settings.range/this.settings.slices)+((this.settings.range/this.settings.slices)/(length(this.bounds)+length(this.f_objective)))*(this.settings.func_counter);
+                surf(X, Y, K, 'CData', V, 'FaceAlpha', 0.3, 'LineStyle', 'none', 'FaceColor', 'interp');
+            end
+        elseif this.settings.dimension == 2
             V = zeros(len, len);
             for i = 1:len
                 for j = 1:len
                     if isBound
-                        V(i, j) = f([X(i) Y(j) Z(k)]) < 0;
+                        V(i, j) = f([X(i) Y(j)]) < 0;
                     else
-                        V(i, j) = f([X(i) Y(j) Z(k)]);
+                        V(i, j) = f([X(i) Y(j)]);
                     end
                 end
             end
@@ -181,10 +210,7 @@ methods
                 % zero the non-zero values to darken them in the heatmap
                 V = V.*0;
             end
-            % properly offset the slice according to the number of function
-            % passed via constructor
-            K = ones(len, len)*(k-len/2)*(this.settings.range/this.settings.slices)+((this.settings.range/this.settings.slices)/(length(this.bounds)+length(this.f_objective)))*(this.settings.func_counter);
-            surf(X, Y, K, 'CData', V, 'FaceAlpha', 0.3, 'LineStyle', 'none', 'FaceColor', 'interp');
+            surf(X, Y, V);
         end
         this.settings.func_counter = this.settings.func_counter + 1;
     end
@@ -202,23 +228,40 @@ methods
         end
         s = norm(x(1:n, 1));
         x(1:n, 1:n+1) = x(1:n, 1:n+1)/s;
-        x = x'./1.633;
+        if this.settings.dimension == 3
+            x = x'./1.633;
+        else
+            x = x';
+        end
     end
     
     % draws a simplex
     function drawSimplex(this, P, color)
-        f = [1 2 3; 1 2 4; 1 3 4; 2 3 4];
-        patch('Faces', f ,'Vertices', P, 'EdgeColor', 'k', 'FaceColor', color, 'LineWidth', 1.5, 'FaceAlpha', 0.7);
+        % TODO
+        if this.settings.dimension == 3
+            f = [1 2 3; 1 2 4; 1 3 4; 2 3 4];
+        elseif this.settings.dimension == 2
+            f = [1 2 3];
+        end
+        patch('Faces', f, 'Vertices', P, 'EdgeColor', 'w', 'FaceColor', color, 'LineWidth', 1.5, 'FaceAlpha', 0.7);
     end
     
     % returns the centroid of a regular tetrahedron
     function x = centroid(this, t)
-        x = [sum(t(:, 1))/length(t) sum(t(:, 2))/length(t) sum(t(:, 3))/length(t)];
+        if this.settings.dimension == 3
+            x = [sum(t(:, 1))/length(t) sum(t(:, 2))/length(t) sum(t(:, 3))/length(t)];
+        elseif this.settings.dimension == 2
+            x = [sum(t(:, 1))/length(t) sum(t(:, 2))/length(t)];
+        end
     end
     
     % returns the height of a regular tetrahedron
     function h = simplexHeight(this, P)
-        h = sqrt(6)/3.*norm(P(1, :) - P(2, :));
+        if this.settings.dimension == 3
+            h = sqrt(6)/3.*norm(P(1, :) - P(2, :));
+        elseif this.settings.dimension == 2
+            h = sqrt(3)/2.*norm(P(1, :) - P(2, :));
+        end
     end
 end
     
