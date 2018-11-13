@@ -12,7 +12,7 @@ Z = [0.4 0.7 0.9];
 % the actual script
 maxZ = max(Z)*2; % evaluate until 2 times the position of the last coil
 step = 0.01; % arbitrary
-z = -maxZ:step:maxZ; % independant variable
+z = -4:0.01:4; % independant variable
 bz = symmetricCoilMagneticField(R, I, Z, z);
 
 % plot results
@@ -55,5 +55,5 @@ function bz = symmetricCoilMagneticField(R, I, Z, z)
         end
         bz(k) = inc;
     end
-    bz = mu0 / 2 * bz;
+    bz = (1./median(bz))*sqrt(1./800) *mu0 / 2 * bz;
 end

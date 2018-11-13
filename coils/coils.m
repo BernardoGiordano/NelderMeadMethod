@@ -25,18 +25,6 @@ z=zeros(length(x),1);
 plot3(x, y, z, 'color', 'k', 'lineWidth', 1.5);
 plot3(5, 0, 0, '>', 'color', 'k', 'lineWidth', 1.5, 'MarkerFaceColor', 'k');
 text(5.2, 0, 0, "z");
-z=-3:0.01:3;
-x=zeros(length(z),1);
-y=zeros(length(z),1);
-plot3(x, y, z, 'color', 'k', 'lineWidth', 1.5);
-plot3(0, 0, 3, '^', 'color', 'k', 'lineWidth', 1.5, 'MarkerFaceColor', 'k');
-text(0, 0, 3.4, "y");
-y=-3:0.01:3;
-x=zeros(length(y),1);
-z=zeros(length(y),1);
-plot3(x, y, z, 'color', 'k', 'lineWidth', 1.5);
-plot3(0, -3, 0, '>', 'color', 'k', 'lineWidth', 1.5, 'MarkerFaceColor', 'k');
-text(0, -3.2, 0, "x");
 
 % radius
 plotRadius(z1, r1);
@@ -47,7 +35,8 @@ plotRadius(-z2, r2);
 plotRadius(-z3, r3);
 
 % origin
-text(-0.4, -0.4 , 0, "0", 'color', 'b', 'FontSize', 15);
+text(-0.15, -0.15 , 0, "0", 'color', 'k', 'FontSize', 15);
+plot3(0, 0, 0, 'o', 'color', 'k', 'lineWidth', 1.5, 'MarkerFaceColor', 'k');
 % zlabels
 text(z1, 0, -0.15, "z1", 'color', 'k', 'FontSize', 10);
 text(z2, 0, -0.15, "z2", 'color', 'k', 'FontSize', 10);
@@ -57,7 +46,7 @@ text(-z2, 0, -0.15, "-z2", 'color', 'k', 'FontSize', 10);
 text(-z3, 0, -0.15, "-z3", 'color', 'k', 'FontSize', 10);
 
 % currents
-legend("I1", "I2", "I3");
+legend("Spira 1", "Spira 2", "Spira 3");
 
 set(gca, 'xticklabel', []);
 set(gca, 'yticklabel', []);
