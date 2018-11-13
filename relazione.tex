@@ -94,10 +94,20 @@ desiderato, la suddetta differenza in norma si scriverà come
 	\end{split} 
 \end{equation}
 \noindent
-% da aggiustare
-Possiamo dunque considerare la 1 come \emph{la funzione di costo} del nostro problema.
 
-\section*{Normalizzazione e funzione di costo}
+
+\section*{Campionamento e normalizzazione}
+
+Il campionamento è una tecnica che consiste nel discretizzare un segnale
+continuo nel tempo. Campionando la (1) vediamo che: \\
+
+\begin{equation}
+	\begin{split}
+	& \frac{\mu_{0}}{2}\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
+		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|
+	\end{split} 
+\end{equation}
+\noindent
 
 La normalizzazione è l'operazione che dato un vettore lo porta ad avere una
 norma unitaria. Possiamo normalizzare rispetto al rapporto $\frac{\mu_{0}}{2}$,
