@@ -5,9 +5,9 @@ clc
 % coil radius [m]
 R = [0.7 0.8 0.6];
 % coil current [A]
-I = [0.3 0.5 0.2];
+I = [3 5 2];
 % coil position on the z axis [m]
-Z = [0.4 0.9 1.4];
+Z = [0.4 0.7 0.9];
 
 % the actual script
 maxZ = max(Z)*2; % evaluate until 2 times the position of the last coil
@@ -26,7 +26,7 @@ plot(x, y, 'color', 'k', 'lineWidth', 1);
 plot(0, y(2), '^', 'color', 'k', 'lineWidth', 1, 'MarkerFaceColor', 'k')
 
 % title('Magnetic field for N symmetric coils given Z, R and I')
-ylabel('Bz')
+ylabel('$\tilde{B_{z}}$','Interpreter','latex')
 xlabel('z')
 set(gca, 'xticklabel', []);
 set(gca, 'yticklabel', []);
