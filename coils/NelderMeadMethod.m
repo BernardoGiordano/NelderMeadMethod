@@ -13,6 +13,10 @@ end
 methods
     % object constructor
     function this = NelderMeadMethod(f_objective, bounds, stop_conditions, start_conditions, settings)
+        if settings.dimension ~= length(start_conditions.start)
+            error("Input dimensions don't match");
+        end
+        
         this.f_objective = f_objective;
         this.bounds = bounds;
         this.stop_conditions = stop_conditions;
@@ -22,7 +26,7 @@ methods
         % plot setup
         view(135,20)
         hold on
-        colormap(jet)
+        colormap(hot)
         axis equal
 
         % setup first simplex
@@ -41,7 +45,7 @@ methods
         end
         % draw polytope
         for k = 1:length(this.polytope)
-            this.drawSimplex(this.polytope{k}, 'w')
+            this.drawSimplex(this.polytope{k}, [0.7 0.7 0.7])
         end
         % display results
         disp(this.result);
@@ -157,6 +161,13 @@ methods
         V = f(v);
     end
     
+    function V = clearBounds(this, V)
+        % avoid cluttering the figure by plotting 0 values
+        V(V == 0) = NaN;
+        % zero the non-zero values to darken them in the heatmap
+        V = V.*0;
+    end
+    
     function plotFunction(this, f, isBound)
         % divide plot in blocks
         if this.settings.dimension == 3
@@ -164,10 +175,7 @@ methods
             Y = X;
             Z = X;
         elseif this.settings.dimension == 2
-            % TODO: change hardcoded step to this.settings.step
-            [X, Y] = meshgrid(-this.settings.range:0.01:this.settings.range);
-        elseif this.settings.dimension == 1
-            X = -this.settings.range:this.settings.range/this.settings.slices:this.settings.range;
+            [X, Y] = meshgrid(-this.settings.range:this.settings.step:this.settings.range);
         end
         len = length(X);
         
@@ -185,10 +193,11 @@ methods
                     end
                 end
                 if isBound
-                    % avoid cluttering the figure by plotting 0 values
-                    V(V == 0) = NaN;
-                    % zero the non-zero values to darken them in the heatmap
-                    V = V.*0;
+                    V = this.clearBounds(V);
+                else
+                    V
+                    min(V)
+                    max(V)
                 end
                 % properly offset the slice according to the number of function
                 % passed via constructor
@@ -207,10 +216,7 @@ methods
                 end
             end
             if isBound
-                % avoid cluttering the figure by plotting 0 values
-                V(V == 0) = NaN;
-                % zero the non-zero values to darken them in the heatmap
-                V = V.*0;
+                V = this.clearBounds(V);
             end
             surf(X, Y, V);
         end
@@ -231,15 +237,13 @@ methods
         s = norm(x(1:n, 1));
         x(1:n, 1:n+1) = x(1:n, 1:n+1)/s;
         if this.settings.dimension == 3
-            x = x'./1.633;
-        else
-            x = x';
+            x = x./1.633;
         end
+        x = x';
     end
     
     % draws a simplex
     function drawSimplex(this, P, color)
-        % TODO
         if this.settings.dimension == 3
             f = [1 2 3; 1 2 4; 1 3 4; 2 3 4];
         elseif this.settings.dimension == 2
