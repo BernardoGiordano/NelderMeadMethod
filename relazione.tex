@@ -30,7 +30,7 @@ che per una coppia.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{assets/figure1}
+	\includegraphics[width=12cm]{assets/figure4}
 	\caption{Sistema fisico posizionato nel piano $xyz$.}
 \end{figure}
 
@@ -82,7 +82,7 @@ studio della funzione
 progettare e $\tilde{B_{z}}$ è quella del campo desiderato. \\
 Siccome i parametri di progetto delle spire 1 e 3 (e, quindi, delle rispettive
 spire simmetriche) sono noti ed esattamente uguali a quelli del sistema
-desiderato, la suddetta differenza in norma si scriverà come
+desiderato, la suddetta differenza in norma si scriverà come:
 
 \begin{equation}
 	\begin{split}
@@ -103,16 +103,29 @@ continuo nel tempo. Campionando la (1) vediamo che: \\
 
 \begin{equation}
 	\begin{split}
-	& \frac{\mu_{0}}{2}\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
-		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|
+		F_{obj} = 
+	& \frac{\mu_{0}}{2} \frac{1}{Np} \sum\limits_{k=1}^{Np} \Biggl[\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
+		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|\Biggr]
 	\end{split} 
 \end{equation}
 \noindent
+$N_{p}$ è il numero di campioni che andiamo a considerare. Essendo che, più
+cresce il campionamento e più cresce la somma delle variabili andiamo a
+valutarne la media. Prima di continuare vediamo che la normalizzazione è
+l'operazione che dato un vettore lo porta ad avere una norma unitaria.
+Andiamo dunque ad eseguire una normalizzazione del
+campionamento rispetto alla media di $\tilde{B_{z}}$. Otteniamo allora: \\
+ 
 
-La normalizzazione è l'operazione che dato un vettore lo porta ad avere una
-norma unitaria. Possiamo normalizzare rispetto al rapporto $\frac{\mu_{0}}{2}$,
-
-% su cosa cazzo normalizziamo?  
+\begin{equation}
+	\begin{split}
+		F_{obj} =
+	&  \frac{\mu_{0}}{2} \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl\{ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Biggl[\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
+		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|\Biggr]\biggr\}^{\!1/2}
+	\end{split} 
+\end{equation}
+\noindent
+ 
 \section*{Analisi dei parametri}
 
 
@@ -123,12 +136,12 @@ delle posizioni relativi a tutte le spire, compresa quelle da progettare (spire
 2 e 4). 
 Dopo diverse iterazioni, vediamo che dei possibili valori sono:
 \newline  \\
-\centerline{ \textbf{Spira 1}: $R_{1}$ = 0.7m ; $I_{1}$ = 0.3 A; $Z_{1}$ = -0.4m} 
-\centerline{ \textbf{Spira 2}: $R_{2}$ = 0.8m ; $I_{2}$ = 0.5 A; $Z_{2}$ = -0.9m}
-\centerline{ \textbf{Spira 3}: $R_{3}$ = 0.6m ; $I_{3}$ = 0.2 A; $Z_{3}$ = -1.4m}
-\centerline{ \textbf{Spira 4}: $R_{4}$ = 0.7m ; $I_{4}$ = 0.3 A; $Z_{4}$ = 0.4m}
-\centerline{ \textbf{Spira 5}: $R_{5}$ = 0.8m ; $I_{5}$ = 0.5 A; $Z_{5}$ = 0.9m}
-\centerline{ \textbf{Spira 6}: $R_{6}$ = 0.6m ; $I_{6}$ = 0.2 A; $Z_{6}$ = 1.4m}
+\centerline{ \textbf{Spira 1}: $R_{1}$ = 0.7m  \\ $I_{1}$ = 3 A \\ $Z_{1}$ = -0.4m} 
+\centerline{ \textbf{Spira 2}: $R_{2}$ = 0.8m  \\ $I_{2}$ = 5 A \\ $Z_{2}$ = -0.7m}
+\centerline{ \textbf{Spira 3}: $R_{3}$ = 0.6m \\ $I_{3}$ = 2 A \\ $Z_{3}$ = -0.9m}
+\centerline{ \textbf{Spira 4}: $R_{4}$ = 0.7m \\ $I_{4}$ = 3 A \\ $Z_{4}$ = 0.4m}
+\centerline{ \textbf{Spira 5}: $R_{5}$ = 0.8m \\ $I_{5}$ = 5 A \\ $Z_{5}$ = 0.7m}
+\centerline{ \textbf{Spira 6}: $R_{6}$ = 0.6m \\ $I_{6}$ = 2 A \\ $Z_{6}$ = 0.9m}
 
 \section* {Ricerca del minimo}
 
@@ -143,7 +156,9 @@ attraverso il movimento del politopo, il politopo può:\\
 -Contrarsi:     se un vertice del politopo rimane più a lungo di un numero 
 	specifico di iterazioni M (M fissato) il politopo viene contratto.\\
 Il simplesso è un metodo zero-th, anche se non faccio uso di derivate sto stimando in qualche
-modo una direzione di discesa. 
+modo una direzione di discesa. \\
+Nel nostro caso, avendo tre incognite; la corrente $I_{2}$, il raggio $R_{2}$ e
+la posizione $Z_{2}$ avremo come politopo un tetraedo. 
 
 
 
