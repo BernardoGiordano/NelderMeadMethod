@@ -7,7 +7,7 @@ properties (Access = private)
     f_objective = [];
     bounds = {};
     polytope = {};
-    result = struct('halvings', 0, 'flips', 0)
+    result = struct('halvings', 0, 'flips', 0);
 end
     
 methods
@@ -17,7 +17,7 @@ methods
         this.bounds = bounds;
         this.stop_conditions = stop_conditions;
         this.start_conditions = start_conditions;
-        this.settings = settings; 
+        this.settings = settings;
         
         % plot setup
         view(135,20)
@@ -166,6 +166,8 @@ methods
         elseif this.settings.dimension == 2
             % TODO: change hardcoded step to this.settings.step
             [X, Y] = meshgrid(-this.settings.range:0.01:this.settings.range);
+        elseif this.settings.dimension == 1
+            X = -this.settings.range:this.settings.range/this.settings.slices:this.settings.range;
         end
         len = length(X);
         

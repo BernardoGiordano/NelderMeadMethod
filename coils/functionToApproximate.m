@@ -55,5 +55,5 @@ function bz = symmetricCoilMagneticField(R, I, Z, z)
         end
         bz(k) = inc;
     end
-    bz = (1./median(bz))*sqrt(1./800) *mu0 / 2 * bz;
+    bz = mu0 / 2 * bz;
 end
