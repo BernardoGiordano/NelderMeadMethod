@@ -149,6 +149,7 @@ methods
     % halve the last simplex keeping the j-th vertex
     function s = halve(this, j)
         s = this.polytope{end};
+        this.polytope(:,end)=[];
         for i = 1:length(s)
            if i ~= j
               s(i, :) = (s(i, :)+s(j, :))/2; 
@@ -195,9 +196,9 @@ methods
                 if isBound
                     V = this.clearBounds(V);
                 else
-                    V
-                    min(V)
-                    max(V)
+                    V;
+                    min(V);
+                    max(V);
                 end
                 % properly offset the slice according to the number of function
                 % passed via constructor
