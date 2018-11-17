@@ -61,8 +61,8 @@ il campo magnetico complessivo sull’asse $z$ varrà
 
 \begin{align*}
 	B_{z}
-		&=\frac{\mu_{0}}{4{\pi}}\left(\sum_{i=1}^{n/2}\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)\\
-		&=\frac{\mu_{0}}{2}\left(\sum_{i=1}^{n/2}\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)
+	&=\frac{\mu_{0}}{4{\pi}}\left(\sum_{i=1}^{n/2}\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)\\
+	&=\frac{\mu_{0}}{2}\left(\sum_{i=1}^{n/2}\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)
 \end{align*}
 \noindent
 L'obiettivo del progetto della spira mancante risulta essere la migliore
@@ -86,7 +86,7 @@ desiderato, la suddetta differenza in norma si scriverà come:
 
 \begin{equation}
 	\begin{split}
-	||B_{z}-\tilde{B_{z}}||
+		||B_{z}-\tilde{B_{z}}||
 		=& \Bigl|\Bigl|\frac{\mu_{0}}{2}(\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}})- \\
 		 & \frac{\mu_{0}}{2}(\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}})\Bigr|\Bigr| \\
 		=& \frac{\mu_{0}}{2}\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
@@ -94,6 +94,24 @@ desiderato, la suddetta differenza in norma si scriverà come:
 	\end{split} 
 \end{equation}
 \noindent
+
+
+\section*{Analisi dei parametri}
+
+
+Per avvicinarci quando più possibile all'andamento della funzione descritta
+dalla $Fig.2$, dobbiamo modellare i dati della funzione di campo magnetico ideale.
+Dobbiamo quindi scegliere opportunamente il valore dei raggi, delle correnti e
+delle posizioni relativi a tutte le spire, compresa quelle da progettare (spire
+2 e 4). 
+Dopo diverse iterazioni, vediamo che dei possibili valori sono:
+\newline  \\
+\centerline{ \textbf{Spira 1}: $R_{1}$ = 0.7m \\ $I_{1}$ = 3 A \\ $Z_{1}$ = -0.4m} 
+\centerline{ \textbf{Spira 2}: $R_{2}$ = 0.8m \\ $I_{2}$ = 5 A \\ $Z_{2}$ = -0.7m}
+\centerline{ \textbf{Spira 3}: $R_{3}$ = 0.6m \\ $I_{3}$ = 2 A \\ $Z_{3}$ = -0.9m}
+\centerline{ \textbf{Spira 4}: $R_{4}$ = 0.7m \\ $I_{4}$ = 3 A \\ $Z_{4}$ = 0.4m}
+\centerline{ \textbf{Spira 5}: $R_{5}$ = 0.8m \\ $I_{5}$ = 5 A \\ $Z_{5}$ = 0.7m}
+\centerline{ \textbf{Spira 6}: $R_{6}$ = 0.6m \\ $I_{6}$ = 2 A \\ $Z_{6}$ = 0.9m}
 
 
 \section*{Campionamento e normalizzazione}
@@ -104,8 +122,8 @@ continuo nel tempo. Campionando la (1) vediamo che: \\
 \begin{equation}
 	\begin{split}
 		F_{obj} = 
-	& \frac{\mu_{0}}{2} \frac{1}{Np} \sum\limits_{k=1}^{Np} \Biggl[\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
-		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|\Biggr]
+		& \frac{\mu_{0}}{2} \frac{1}{Np} \sum\limits_{k=1}^{Np} \Biggl[\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
+		& \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|\Biggr]
 	\end{split} 
 \end{equation}
 \noindent
@@ -120,28 +138,12 @@ campionamento rispetto alla media di $\tilde{B_{z}}$. Otteniamo allora: \\
 \begin{equation}
 	\begin{split}
 		F_{obj} =
-	&  \frac{\mu_{0}}{2} \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl\{ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Biggl[\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
-		 & \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|\Biggr]\biggr\}^{\!1/2}
+		& \frac{\mu_{0}}{2} \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl\{ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Biggl[\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
+		& \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|\Biggr]\biggr\}^{\!1/2}
 	\end{split} 
 \end{equation}
 \noindent
  
-\section*{Analisi dei parametri}
-
-
-Per avvicinarci quando più possibile all'andamento della funzione descritta
-dalla $Fig.3$, dobbiamo modellare i dati della funzione di campo magnetico ideale.
-Dobbiamo quindi scegliere opportunamente il valore dei raggi, delle correnti e
-delle posizioni relativi a tutte le spire, compresa quelle da progettare (spire
-2 e 4). 
-Dopo diverse iterazioni, vediamo che dei possibili valori sono:
-\newline  \\
-\centerline{ \textbf{Spira 1}: $R_{1}$ = 0.7m  \\ $I_{1}$ = 3 A \\ $Z_{1}$ = -0.4m} 
-\centerline{ \textbf{Spira 2}: $R_{2}$ = 0.8m  \\ $I_{2}$ = 5 A \\ $Z_{2}$ = -0.7m}
-\centerline{ \textbf{Spira 3}: $R_{3}$ = 0.6m \\ $I_{3}$ = 2 A \\ $Z_{3}$ = -0.9m}
-\centerline{ \textbf{Spira 4}: $R_{4}$ = 0.7m \\ $I_{4}$ = 3 A \\ $Z_{4}$ = 0.4m}
-\centerline{ \textbf{Spira 5}: $R_{5}$ = 0.8m \\ $I_{5}$ = 5 A \\ $Z_{5}$ = 0.7m}
-\centerline{ \textbf{Spira 6}: $R_{6}$ = 0.6m \\ $I_{6}$ = 2 A \\ $Z_{6}$ = 0.9m}
 
 \section* {Ricerca del minimo}
 
@@ -152,13 +154,25 @@ ricerca della soluzione ottima ai vertici del politopo. La ricerca avviene
 attraverso il movimento del politopo, il politopo può:\\   
 -Ribaltarsi:    valuto il valore della funzione nei 3 vertici, idividuo il vertice
 	con il valore 'peggiore' tengo fermo gli altri due e ribalto quello 
-	'peggiore' a banda opposta(caso N=2). \\
+	'peggiore' a banda opposta(caso N=2). L'algoritmo può trovarsi in una
+	condizione di loop, questo avviene quando il valore della funzione nel vertice ribaltato continua ad
+	essere il peggiore. In questo caso particolare, si applica il metodo
+	del "secondo peggiore", ovvero si torna al passo precedente e si va a
+	valutare il vertice con il secondo valore peggiore e si procede con il
+	ribaltamento. \\
 -Contrarsi:     se un vertice del politopo rimane più a lungo di un numero 
 	specifico di iterazioni M (M fissato) il politopo viene contratto.\\
 Il simplesso è un metodo zero-th, anche se non faccio uso di derivate sto stimando in qualche
 modo una direzione di discesa. \\
 Nel nostro caso, avendo tre incognite; la corrente $I_{2}$, il raggio $R_{2}$ e
-la posizione $Z_{2}$ avremo come politopo un tetraedo.
+la posizione $Z_{2}$ avremo come politopo un tetraedro.\\
+L'implementazione dell'algoritmo è stata fatta tramite Matlab, prima di arrivare
+a considerare il problema vero e proprio, abbiamo fatto diversi esperimenti:\\
+Il primo esperimento è stato fatto in 2d senza applicare alcun vincolo. 
+%dati e figura 2d
+\\
+In seguito è stato fatto l'esperimento in 3d, con le stesse modalità.
+%dati e figura 3d 
 
 
 
