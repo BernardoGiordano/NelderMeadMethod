@@ -21,14 +21,14 @@ bound2 = @(x)(2*x(1)+x(2)-x(3));
 
 % simplex algorythm
 bounds = {};
-settings = struct('range', 1, 'step',0.01, 'slices', 20, 'func_counter', 0, 'dimension', 3);
+settings = struct('range', 1, 'step', 0.01, 'slices', 20, 'dimension', 2);
 stop_conditions = struct('maxFlips', 1000, 'minHalving', 1e-5, 'minMargin', 1e-5);
-start_conditions = struct('start', [0.4 0.1 0.5], 'length', 0.5);
-obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings);
+start_conditions = struct('start', [0.4 0.1], 'length', 0.2);
+obj = NelderMeadMethod(fobj2d, bounds, stop_conditions, start_conditions, settings);
 
 % plot ideal minimum
-% plot(X(1), X(2), '.', 'color', 'r', 'lineWidth', 4);
-% plot3(X(1), X(2), X(3), '.', 'color', 'r', 'lineWidth', 4);
+plot(X(1), X(2), '.', 'color', 'r', 'lineWidth', 4);
+% plot(X(1), X(2), X(3), '.', 'color', 'r', 'lineWidth', 4);
 
 function res = Bz(X, z)
     global mu0
@@ -39,9 +39,5 @@ function res = Bz(X, z)
 end
 
 function res = Bz2d(X, z)
-    global mu0
-    I = X(1);
-    R = X(2);
-    Z = 0.8;
-    res = (mu0/2)*(((I*R.^2)./(((Z-z).^2+R.^2).^(3/2))) + ((I*R.^2)./(((Z+z).^2+R.^2).^(3/2))));
+    res = Bz([X(1) X(2) 0.8], z);
 end
