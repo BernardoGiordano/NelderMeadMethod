@@ -57,7 +57,7 @@ corrente relative alla spira $i$-esima. \\
 Sia inoltre $n=6$ il numero complessivo delle spire facenti parte del sistema.
 Considerando adesso la sovrapposizione degli effetti di tutte le spire del
 sistema e tenendo presente che le spire sono simmetriche rispetto al piano $xy$,
-il campo magnetico complessivo sull’asse $z$ varrà:
+il campo magnetico complessivo sull’asse $z$ sarà:
 
 \begin{align*}
 	B_{z}
@@ -99,12 +99,11 @@ desiderato, la suddetta differenza in norma si scriverà come:
 \section*{Analisi dei parametri}
 
 
-Per avvicinarci quando più possibile all'andamento della funzione descritta
-dalla $Fig.2$, dobbiamo modellare i dati della funzione di campo magnetico ideale.
-Dobbiamo quindi scegliere opportunamente il valore dei raggi, delle correnti e
-delle posizioni relativi a tutte le spire, compresa quelle da progettare (spire
+Al fine di avvicinarci alla caratteristica descritta in $Fig.2$,
+dobbiamo scegliere opportunamente il valore dei raggi, delle correnti e
+delle posizioni relativi a tutte le spire, comprese quelle da progettare (spire
 2 e 4). 
-Dopo diverse iterazioni, vediamo che dei possibili valori sono:
+Dopo diverse iterazioni, vediamo che dei plausibili valori sono: 
 \newline  \\
 \centerline{ \textbf{Spira 1}: $R_{1}$ = 0.7m \\ $I_{1}$ = 3 A \\ $Z_{1}$ = -0.4m} 
 \centerline{ \textbf{Spira 2}: $R_{2}$ = 0.8m \\ $I_{2}$ = 5 A \\ $Z_{2}$ = -0.7m}
@@ -116,8 +115,13 @@ Dopo diverse iterazioni, vediamo che dei possibili valori sono:
 
 \section*{Campionamento e normalizzazione}
 
+Prima di poter definire la nostra funzione obiettivo, c'è bisogno di applicare
+due tecniche, ovvero: campionamento e normalizzazione.
 Il campionamento è una tecnica che consiste nel discretizzare un segnale
-continuo nel tempo. Campionando la (1) vediamo che: \\
+continuo nel tempo. La normalizzazione è l'operazione la quale, dato un vettore,
+lo porta ad avere una norma unitaria. \\
+Campionando la (1) vediamo che: 
+
 
 \begin{equation}
 	\begin{split}
@@ -129,10 +133,9 @@ continuo nel tempo. Campionando la (1) vediamo che: \\
 \noindent
 $N_{p}$ è il numero di campioni che andiamo a considerare. Essendo che, più
 cresce il campionamento e più cresce la somma delle variabili andiamo a
-valutarne la media. Prima di continuare vediamo che la normalizzazione è
-l'operazione che dato un vettore lo porta ad avere una norma unitaria.
-Andiamo dunque ad eseguire una normalizzazione del
-campionamento rispetto alla media di $\tilde{B_{z}}$. Otteniamo allora: \\
+valutarne la media. Infine, eseguiamo una normalizzazione del
+campionamento rispetto alla media di $\tilde{B_{z}}$. La $funzione$ $obiettivo$ si
+scriverà come:
  
 
 \begin{equation}
@@ -148,16 +151,16 @@ campionamento rispetto alla media di $\tilde{B_{z}}$. Otteniamo allora: \\
 \section* {Ricerca del minimo}
 
 L'algoritmo di ricerca del minimo fa uso del concetto di simplesso, cioè un politopo di N+1 vertici 
-in N dimensioni, ovvero: un segmento di retta in una dimensione, un triangolo in due 
+in N dimensioni, vale a dire: un segmento in una dimensione, un triangolo in due 
 dimensioni, un tetraedro in tre dimensioni. Il metodo ci permette di limitare la
 ricerca della soluzione ottima ai vertici del politopo. La ricerca avviene 
-attraverso il movimento del politopo, il politopo può:\\   
--Ribaltarsi:    valuto il valore della funzione nei 3 vertici, idividuo il vertice
-	con il valore 'peggiore' tengo fermo gli altri due e ribalto quello 
-	'peggiore' a banda opposta(caso N=2). L'algoritmo può trovarsi in una
-	condizione di loop, questo avviene quando il valore della funzione nel vertice ribaltato continua ad
+attraverso il movimento del politopo, il quale può:\\   
+-Ribaltarsi:    valuto il valore della funzione nei 3 vertici, individuo il vertice
+con il valore 'peggiore', ribalto rispetto a quest'ultimo tenendo fermo gli
+altri due vertici(caso N=2). L'algoritmo può trovarsi in una
+	condizione di loop, questo avviene quando il valore della funzione nel vertice ribaltato, continua ad
 	essere il peggiore. In questo caso particolare, si applica il metodo
-	del "secondo peggiore", ovvero si torna al passo precedente e si va a
+	del "secondo peggiore", ossia, si torna al passo precedente e si va a
 	valutare il vertice con il secondo valore peggiore e si procede con il
 	ribaltamento. \\
 -Contrarsi:     se un vertice del politopo rimane più a lungo di un numero 
@@ -166,14 +169,14 @@ Il simplesso è un metodo zero-th, anche se non faccio uso di derivate sto stima
 modo una direzione di discesa. \\
 
 \section* {Esperimenti con il metodo del simplesso}
-L'implementazione dell'algoritmo è stata fatta tramite Matlab, prima di arrivare
-a considerare il problema vero e proprio, abbiamo fatto diversi esperimenti.
-Partiamo col dire che nel nostro caso, avendo tre incognite: la corrente $I_{2}$, il raggio $R_{2}$ e
+L'algoritmo del simplesso è stato implementato su matlab, ma prima di
+considerare il problema vero e proprio, si è ritenuto opportuno effetturare diversi esperimenti.
+Partiamo col dire che, nel nostro caso, avendo tre incognite: la corrente $I_{2}$, il raggio $R_{2}$ e
 la posizione $Z_{2}$, avremo come politopo un tetraedro.\\
-Il primo esperimento è stato fatto in 2d senza applicare alcun vincolo. 
+
+%Il primo esperimento è stato fatto in 2d senza applicare alcun vincolo. 
 %dati e figura 2d
-\\
-In seguito è stato fatto l'esperimento in 3d, con le stesse modalità.
+%In seguito è stato fatto l'esperimento in 3d, con le stesse modalità.
 %dati e figura 3d 
 
 \begin{thebibliography}{9}
