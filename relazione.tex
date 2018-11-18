@@ -7,7 +7,6 @@
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\refname}{Bibliografia}
 
-
 \begin{document}
 % Header
 \noindent
@@ -113,39 +112,49 @@ come:
 \begin{equation}
 	\begin{split}
 		F_{obj} =
-		& \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl[ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}- \\
-		& \frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}+\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|\biggr]^{\!1/2}
+		& \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl[ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}+ \\
+		& -\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}-\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|^{2}\biggr]^{\!1/2}
 	\end{split} 
 \end{equation}
 \noindent
- 
 
 \section* {Ricerca del minimo}
 
 L'algoritmo di ricerca del minimo fa uso del concetto di simplesso, cioè un
-politopo di N+1 vertici in N dimensioni, vale a dire: un segmento in una
-dimensione, un triangolo in due dimensioni, un tetraedro in tre dimensioni. Il
-metodo ci permette di limitare la ricerca della soluzione ottima ai vertici del
-politopo. La ricerca avviene attraverso il movimento del politopo, il quale
-può:\\   
--Ribaltarsi:    valuto il valore della funzione nei 3 vertici, individuo il
-vertice con il valore 'peggiore', ribalto rispetto a quest'ultimo tenendo fermo
-gli altri due vertici(caso N=2). L'algoritmo può trovarsi in una condizione di
-loop, questo avviene quando il valore della funzione nel vertice ribaltato,
-continua ad essere il peggiore. In questo caso particolare, si applica il metodo
-del "secondo peggiore", ossia, si torna al passo precedente e si va a valutare
-il vertice con il secondo valore peggiore e si procede con il ribaltamento. \\
--Contrarsi:     se un vertice del politopo rimane più a lungo di un numero
-specifico di iterazioni M (M fissato) il politopo viene contratto.\\
-Il simplesso è un metodo zero-th, anche se non faccio uso di derivate sto
-stimando in qualche modo una direzione di discesa. \\
+politopo di $N+1$ vertici in $N$ dimensioni, vale a dire: un segmento in una
+dimensione, un triangolo in due dimensioni, un tetraedro in tre dimensioni, e
+così via. Il metodo permette di limitare la ricerca della soluzione ottima ai vertici del
+politopo. \\
+La ricerca avviene attraverso il movimento del politopo, il quale può:
+
+\begin{itemize}
+\item \textbf{Ribaltarsi}: si valuta la funzione negli $N$ vertici del simplesso,
+individuando qual è il vertice nel quale la funzione assume il valore
+\emph{peggiore} (nel caso di un problema di ricerca del minimo, il caso peggiore
+è quello in cui la funzione assume valore più grande tra tutti i vertici del
+simplesso considerato). Una volta identificato il vertice peggiore, il simplesso
+si ribalta rispetto a quest'ultimo, tenendo fermi gli altri $N-1$ vertici. \\
+L'algoritmo può però ritrovarsi in una situazione di loop, dove il vertice
+peggiore risulta essere proprio l'ultimo rispetto al quale è stato effettuato il
+ribaltamento. In questo caso, si ribalta rispetto al \emph{secondo peggior vertice}. 
+\item \textbf{Contrarsi}: se un vertice del politopo \emph{vive} più a lungo di un numero
+arbitrario di iterazioni $M$, il politopo viene contratto, dimezzando i lati
+dell'ultimo simplesso tenendo fermo il vertice \emph{migliore}.
+\end{itemize}
+
+\noindent
+L'algoritmo di ricerca del minimo mediante l'uso del politopo è un metodo di
+\emph{ordine 0}, ovvero non richiede l'uso delle derivate, nonostante riesca a
+stimare una direzione di discesa della funzione obiettivo.
+
+\section*{Implementazione dell'algoritmo}
+
 
 \section*{Analisi dei parametri}
 
-Al fine di avvicinarci alla caratteristica descritta in $Fig.2$, dobbiamo
-scegliere opportunamente il valore dei raggi, delle correnti e delle posizioni
-relativi a tutte le spire, comprese quelle da progettare (spire 2 e 4). Dopo
-diverse iterazioni, vediamo che dei plausibili valori sono: \newline  \\
+Al fine di avvicinarci alla caratteristica descritta in $Fig. 2$, vanno
+scelti opportunamente il valore dei raggi, delle correnti e delle posizioni
+relative a tutte le spire, comprese quelle da progettare (spire 2 e 4). \\ \\
 \centerline{ \textbf{Spira 1}: $R_{1}$ = 0.7m \\ $I_{1}$ = 3 A \\ $Z_{1}$ = -0.4m} 
 \centerline{ \textbf{Spira 2}: $R_{2}$ = 0.8m \\ $I_{2}$ = 5 A \\ $Z_{2}$ = -0.7m}
 \centerline{ \textbf{Spira 3}: $R_{3}$ = 0.6m \\ $I_{3}$ = 2 A \\ $Z_{3}$ = -0.9m}
@@ -154,16 +163,6 @@ diverse iterazioni, vediamo che dei plausibili valori sono: \newline  \\
 \centerline{ \textbf{Spira 6}: $R_{6}$ = 0.6m \\ $I_{6}$ = 2 A \\ $Z_{6}$ = 0.9m}
 
 \section*{Esperimenti}
-L'algoritmo del simplesso è stato implementato su matlab, ma prima di
-considerare il problema vero e proprio, si è ritenuto opportuno effetturare
-diversi esperimenti. Partiamo col dire che, nel nostro caso, avendo tre
-incognite: la corrente $I_{2}$, il raggio $R_{2}$ e la posizione $Z_{2}$, avremo
-come politopo un tetraedro.\\
-
-% Il primo esperimento è stato fatto in 2d senza applicare alcun vincolo. dati e
-% figura 2d In seguito è stato fatto l'esperimento in 3d, con le stesse
-% modalità. dati e figura 3d 
-
 
 \begin{thebibliography}{9}
 	% \bibitem{id}Author\emph{title}[online]. Editor.
