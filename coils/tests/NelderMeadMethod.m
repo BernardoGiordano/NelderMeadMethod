@@ -1,15 +1,15 @@
 classdef NelderMeadMethod < handle
 
 properties (Access = private)
-    settings = struct('range', 4, 'step', 0.01, 'slices', 10, 'dimension', 3);
-    range = struct('Xmin', 0, 'Xmax', 6, 'Ymin', 0, 'Ymax', 1, 'Zmin', 0, 'Zmax', 1);
-    stop_conditions = struct('maxFlips', 100, 'minHalving', 1e-2, 'minMargin', 1e-5);
-    start_conditions = struct('start', [0 0 0], 'length', 0.25);
+    settings = struct('step', [], 'slices', [], 'dimension', []);
+    range = struct('Xmin', [], 'Xmax', [], 'Ymin', [], 'Ymax', [], 'Zmin', [], 'Zmax', []);
+    stop_conditions = struct('maxFlips', [], 'tolerance', []);
+    start_conditions = struct('start', [], 'length', []);
     internal = struct('func_counter', 0);
     f_objective = [];
     bounds = {};
     polytope = {};
-    result = struct('halvings', 0, 'flips', 0);
+    result = struct('halvings', 0, 'flips', 0, 'perc_error', 0, 'minimum', [], 'f_objective', 0);
 end
     
 methods
@@ -29,10 +29,8 @@ methods
         % plot setup
         if this.settings.dimension == 3
             view(135,20)
-            axis([this.range.Xmin this.range.Xmax this.range.Ymin this.range.Ymax this.range.Zmin this.range.Zmax])
         elseif this.settings.dimension == 2
             % TODO
-            axis([this.range.Xmin this.range.Xmax this.range.Ymin this.range.Ymax])
         end
         hold on
         colormap(hot)
@@ -40,9 +38,6 @@ methods
 
         % setup first simplex
         this.polytope{end+1} = bsxfun(@plus, this.start_conditions.length.*this.simplexCoordinates(this.settings.dimension), [this.start_conditions.start, 0]);
-
-        % compute algorythm
-        this.loop();
 
         % draw f objective
         this.plotFunction(this.f_objective, false);
@@ -52,11 +47,16 @@ methods
                 this.plotFunction(this.bounds{k}, true);
             end
         end
+        
+        % compute algorythm
+        this.loop();
+        
         % draw polytope
         for k = 1:length(this.polytope)
             this.drawSimplex(this.polytope{k}, [0.7 0.7 0.7])
         end
         % display results
+        disp("Results")
         disp(this.result);
     end
     
@@ -74,24 +74,35 @@ methods
             else
                 % flip with respect to the maximum vertex
                 j = this.findMaximumVertex(s, penality);
-                new_s = this.flip(j);
+                new_s = this.flip(s, j);
                 % if the new maximum value is bigger than the previous one after
                 % flipping, flip with respect of the 2th maximum vertex
                 v_s = this.evaluate(this.f_objective, s(j, 1:this.settings.dimension));
                 v_new_s = this.evaluate(this.f_objective, new_s(j, 1:this.settings.dimension));
-                if v_s < v_new_s
-                    new_s = this.flip(this.find2thMaximumVertex(s, penality));
+                if v_s <= v_new_s
+                    i = this.find2thMaximumVertex(s, penality);
+                    new_s = this.flip(s, i);
                 end
                 % check for out of range conditions
                 if this.isOutOfRange(new_s)
                     new_s = this.halve(s, this.findMinimumVertex(s, penality));
                 end
             end
+            
             % append next simplex
             this.polytope{end+1} = new_s;
+            
+            % reset some variables for convenience
+            s = this.polytope{end};
+            penality = this.getPenality(s);
+            % update results
+            this.result.minimum = s(this.findMinimumVertex(s, penality), 1:this.settings.dimension);
+            this.result.f_objective = this.evaluate(this.f_objective, this.result.minimum);
+            this.result.perc_error = this.result.f_objective * 100;
             % check stop conditions
-            if this.result.flips >= this.stop_conditions.maxFlips
-                % TODO: check more stop conditions
+            if this.result.flips >= this.stop_conditions.maxFlips || ...
+               this.result.perc_error <= this.stop_conditions.tolerance
+                % TODO: check more stop conditions?
                 shouldContinue = false;
             end
         end
@@ -102,7 +113,9 @@ methods
         r = false;
         [~, M] = size(s);
         for j = 1:M-1
-            if s(i, j) > this.settings.range || s(i, j) < -this.settings.range
+            if (j == 1 && (s(i, j) > this.range.Xmax || s(i, j) < this.range.Xmin)) || ...
+               (j == 2 && (s(i, j) > this.range.Ymax || s(i, j) < this.range.Ymin)) || ...
+               (j == 3 && (s(i, j) > this.range.Zmax || s(i, j) < this.range.Zmin))
                 r = true;
                 break
             end
@@ -125,7 +138,7 @@ methods
     function v = isTooOld(this, s)
         v = false;
         % TODO: parametrize n
-        n = 7;
+        n = 20;
         [N, ~] = size(s);
         for i = 1:N
             if s(i, this.settings.dimension + 1) == n
@@ -187,8 +200,7 @@ methods
     end
     
     % flips the j-th vertex of the last simplex in the polytope array 
-    function s = flip(this, j)
-        s = this.polytope{end};
+    function s = flip(this, s, j)
         c = this.centroid(s);
         h = this.simplexHeight(s);
         % find direction of jth_vertex - centroid vector
@@ -231,20 +243,25 @@ methods
     function plotFunction(this, f, isBound)
         % divide plot in blocks
         if this.settings.dimension == 3
-            X = -this.settings.range:this.settings.range/this.settings.slices:this.settings.range;
-            Y = X;
-            Z = X;
+            X = this.range.Xmin:(this.range.Xmax-this.range.Xmin)/this.settings.slices:this.range.Xmax;
+            Y = this.range.Ymin:(this.range.Ymax-this.range.Ymin)/this.settings.slices:this.range.Ymax;
+            Z = this.range.Zmin:(this.range.Zmax-this.range.Zmin)/this.settings.slices:this.range.Zmax;
         elseif this.settings.dimension == 2
-            [X, Y] = meshgrid(-this.settings.range:this.settings.step:this.settings.range);
+            [X, Y] = meshgrid(this.range.Xmin:(this.range.Xmax-this.range.Xmin)/this.settings.slices:this.range.Xmax, ...
+                              this.range.Ymin:(this.range.Ymax-this.range.Ymin)/this.settings.slices:this.range.Ymax);
         end
-        len = length(X);
+        lenX = length(X);
+        lenY = length(Y);
+        if this.settings.dimension == 3
+            lenZ = length(Z);
+        end
         
         % 3D plot
         if this.settings.dimension == 3
-            for k = 1:len
-                V = zeros(len, len);
-                for i = 1:len
-                    for j = 1:len
+            for k = 1:lenZ
+                V = zeros(lenX, lenY);
+                for i = 1:lenX
+                    for j = 1:lenY
                         if isBound
                             V(i, j) = f([X(i) Y(j) Z(k)]) < 0;
                         else
@@ -257,14 +274,14 @@ methods
                 end
                 % properly offset the slice according to the number of function
                 % passed via constructor
-                K = ones(len, len)*(k-len/2)*(this.settings.range/this.settings.slices)+((this.settings.range/this.settings.slices)/(length(this.bounds)+length(this.f_objective)))*(this.internal.func_counter);
+                K = ones(lenX, lenY)*(k)*((this.range.Zmax-this.range.Zmin)/this.settings.slices)+(((this.range.Zmax-this.range.Zmin)/this.settings.slices)/(length(this.bounds)+length(this.f_objective)))*(this.internal.func_counter);
                 surf(X, Y, K, 'CData', V, 'FaceAlpha', 0.3, 'LineStyle', 'none', 'FaceColor', 'interp');
             end
         % 2D plot
         elseif this.settings.dimension == 2
-            V = zeros(len, len);
-            for i = 1:len
-                for j = 1:len
+            V = zeros(lenX, lenY);
+            for i = 1:lenX
+                for j = 1:lenY
                     if isBound
                         V(i, j) = f([X(i) Y(j)]) < 0;
                     else
@@ -321,10 +338,15 @@ methods
     % returns the height of a simplex
     function h = simplexHeight(this, P)
         if this.settings.dimension == 3
-            h = sqrt(6)/3.*norm(P(1, 1:this.settings.dimension) - P(2, 1:this.settings.dimension));
+            h = sqrt(6)/3.*this.simplexLength(P);
         elseif this.settings.dimension == 2
-            h = sqrt(3)/2.*norm(P(1, 1:this.settings.dimension) - P(2, 1:this.settings.dimension));
+            h = sqrt(3)/2.*this.simplexLength(P);
         end
+    end
+    
+    % returns the side length of a simplex
+    function l = simplexLength(this, P)
+        l = norm(P(1, 1:this.settings.dimension) - P(2, 1:this.settings.dimension));
     end
 end
     

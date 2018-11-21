@@ -12,19 +12,20 @@ hZ = 0.7;
 X = [hI hR hZ];
 
 % objective function
-z = -6:0.25:6;
+z = -1:0.1:1;
 fobj = @(x)((1/mean(Bz(X, z)))*(norm(Bz(x, z) - Bz(X, z))*sqrt(inv(length(z)))));
+% fobj = @(x)(x(1).^2+x(2).^2+x(3).^2-4);
 fobj2d = @(x)((1/mean(Bz2d(X, z)))*(norm(Bz2d(x, z) - Bz2d(X, z))*sqrt(inv(length(z)))));
-bound1 = @(x)((x(1)+1)^2+(x(2)-1)^2+(x(3)-1)^2 -1.35^2);
-bound2 = @(x)(2*x(1)+x(2)-x(3));
+bound2 = @(x)(-x(1)-x(2)-x(3)+5.5);
+bound3 = @(x)(x(2)-2*x(3)); % R<=2z
 
 % simplex algorythm
 bounds = {};
-settings = struct('range', 6, 'step', 0.1, 'slices', length(z), 'dimension', 2);
+settings = struct('step', 0.1, 'slices', length(z), 'dimension', 3);
 range = struct('Xmin', 0, 'Xmax', 6, 'Ymin', 0, 'Ymax', 1, 'Zmin', 0, 'Zmax', 1);
-stop_conditions = struct('maxFlips', 1000, 'minHalving', 1e-5, 'minMargin', 1e-5);
-start_conditions = struct('start', [1 0.1], 'length', 1);
-obj = NelderMeadMethod(fobj2d, bounds, stop_conditions, start_conditions, settings, range);
+stop_conditions = struct('maxFlips', 10000, 'tolerance', 1e-3);
+start_conditions = struct('start', [4 0.3 0.5], 'length', 0.5);
+obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings, range);
 
 % plot ideal minimum
 % plot(X(1), X(2), '.', 'color', 'r', 'lineWidth', 4);
@@ -38,5 +39,5 @@ function res = Bz(X, z)
 end
 
 function res = Bz2d(X, z)
-    res = Bz([X(1) X(2) 0.8], z);
+    res = Bz([X(1) X(2) 0.7], z);
 end
