@@ -2,6 +2,7 @@ classdef NelderMeadMethod < handle
 
 properties (Access = private)
     settings = struct('range', 4, 'step', 0.01, 'slices', 10, 'dimension', 3);
+    range = struct('Xmin', 0, 'Xmax', 6, 'Ymin', 0, 'Ymax', 1, 'Zmin', 0, 'Zmax', 1);
     stop_conditions = struct('maxFlips', 100, 'minHalving', 1e-2, 'minMargin', 1e-5);
     start_conditions = struct('start', [0 0 0], 'length', 0.25);
     internal = struct('func_counter', 0);
@@ -13,7 +14,7 @@ end
     
 methods
     % object constructor
-    function this = NelderMeadMethod(f_objective, bounds, stop_conditions, start_conditions, settings)
+    function this = NelderMeadMethod(f_objective, bounds, stop_conditions, start_conditions, settings, range)
         if settings.dimension ~= length(start_conditions.start)
             error("Input dimensions don't match");
         end
@@ -23,12 +24,15 @@ methods
         this.stop_conditions = stop_conditions;
         this.start_conditions = start_conditions;
         this.settings = settings;
+        this.range = range;
         
         % plot setup
         if this.settings.dimension == 3
             view(135,20)
+            axis([this.range.Xmin this.range.Xmax this.range.Ymin this.range.Ymax this.range.Zmin this.range.Zmax])
         elseif this.settings.dimension == 2
             % TODO
+            axis([this.range.Xmin this.range.Xmax this.range.Ymin this.range.Ymax])
         end
         hold on
         colormap(hot)
