@@ -12,6 +12,7 @@ disp("Test parameters")
 %%%%%%%%%%%%%% EDIT ME %%%%%%%%%%%%%%
 test_params = struct( ...
     'dimension', 3, ...
+    'plot', true, ...
     'minimum', X, ...
     'sampling_step', 0.1, ...
     'sampling_range', 2, ...
@@ -31,10 +32,12 @@ fobj = @(x)((1/mean(Bz(X, z)))*(norm(Bz(x, z) - Bz(X, z))*sqrt(inv(length(z)))))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % simplex algorythm
-settings = struct('step', test_params.sampling_step, 'slices', length(z), 'dimension', test_params.dimension);
+settings = struct('step', test_params.sampling_step, 'slices', length(z), 'plot', test_params.plot, 'dimension', test_params.dimension);
 range = struct('Xmin', 0, 'Xmax', 6, 'Ymin', 0, 'Ymax', 1, 'Zmin', 0, 'Zmax', 1);
 stop_conditions = struct('maxFlips', test_params.max_flips, 'tolerance', test_params.tolerance);
 start_conditions = struct('start', test_params.start_point, 'length', test_params.length);
 obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings, range);
-% plot ideal minimum
-plot3(X(1), X(2), X(3), 'x', 'color', 'g', 'lineWidth', 1.5);
+if test_params.plot
+    % plot ideal minimum
+    plot3(X(1), X(2), X(3), 'x', 'color', 'g', 'lineWidth', 1.5);
+end

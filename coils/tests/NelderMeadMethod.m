@@ -1,7 +1,7 @@
 classdef NelderMeadMethod < handle
 
 properties (Access = private)
-    settings = struct('step', [], 'slices', [], 'dimension', []);
+    settings = struct('step', [], 'slices', [], 'plot', false, 'dimension', []);
     range = struct('Xmin', [], 'Xmax', [], 'Ymin', [], 'Ymax', [], 'Zmin', [], 'Zmax', []);
     stop_conditions = struct('maxFlips', [], 'tolerance', []);
     start_conditions = struct('start', [], 'length', []);
@@ -27,37 +27,46 @@ methods
         this.range = range;
         
         % plot setup
-        if this.settings.dimension == 3
-            view(135,20)
-        elseif this.settings.dimension == 2
-            % TODO
+        if this.settings.plot
+            if this.settings.dimension == 3
+                view(135,20)
+            elseif this.settings.dimension == 2
+                view(180, -90)
+            end
+            hold on
+            colormap(hot)
+            axis equal
         end
-        hold on
-        colormap(hot)
-        axis equal
 
         % setup first simplex
         this.polytope{end+1} = bsxfun(@plus, this.start_conditions.length.*this.simplexCoordinates(this.settings.dimension), [this.start_conditions.start, 0]);
-
-        % draw f objective
-        this.plotFunction(this.f_objective, false);
-        % draw bounds
-        if ~isempty(this.bounds) > 0
-            for k = 1:length(this.bounds)
-                this.plotFunction(this.bounds{k}, true);
-            end
-        end
-        
+      
         % compute algorythm
         this.loop();
-        
-        % draw polytope
-        for k = 1:length(this.polytope)
-            this.drawSimplex(this.polytope{k}, [0.7 0.7 0.7])
-        end
         % display results
         disp("Results")
         disp(this.result);
+
+        if this.settings.plot
+            % draw f objective
+            this.plotFunction(this.f_objective, false);
+            % draw bounds
+            if ~isempty(this.bounds) > 0
+                for k = 1:length(this.bounds)
+                    this.plotFunction(this.bounds{k}, true);
+                end
+            end
+            % draw polytope
+            for k = 1:length(this.polytope)
+                this.drawSimplex(this.polytope{k}, [0.7 0.7 0.7])
+            end
+            % set axis
+            if this.settings.dimension == 3
+                axis([this.range.Xmin this.range.Xmax this.range.Ymin this.range.Ymax this.range.Zmin this.range.Zmax])
+            elseif this.settings.dimension == 2
+                axis([this.range.Xmin this.range.Xmax this.range.Ymin this.range.Ymax])
+            end
+        end
     end
     
     function loop(this)       
@@ -292,7 +301,7 @@ methods
             if isBound
                 V = this.clearBounds(V);
             end
-            surf(X, Y, V);
+            surf(X, Y, V, 'FaceAlpha', 0.3, 'LineStyle', 'none');
         end
         this.internal.func_counter = this.internal.func_counter + 1;
     end
