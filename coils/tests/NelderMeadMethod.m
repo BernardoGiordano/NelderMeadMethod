@@ -3,13 +3,13 @@ classdef NelderMeadMethod < handle
 properties (Access = private)
     settings = struct('step', [], 'slices', [], 'plot', false, 'dimension', []);
     range = struct('Xmin', [], 'Xmax', [], 'Ymin', [], 'Ymax', [], 'Zmin', [], 'Zmax', []);
-    stop_conditions = struct('maxFlips', [], 'tolerance', []);
+    stop_conditions = struct('maxFlips', [], 'tolerance', [], 'minLength', []);
     start_conditions = struct('start', [], 'length', []);
     internal = struct('func_counter', 0);
     f_objective = [];
     bounds = {};
     polytope = {};
-    result = struct('halvings', 0, 'flips', 0, 'perc_error', 0, 'minimum', [], 'f_objective', 0);
+    result = struct('halvings', 0, 'flips', 0, 'perc_error', 0, 'minimum', [], 'f_objective', 0, 'length', []);
 end
     
 methods
@@ -108,9 +108,11 @@ methods
             this.result.minimum = s(this.findMinimumVertex(s, penality), 1:this.settings.dimension);
             this.result.f_objective = this.evaluate(this.f_objective, this.result.minimum);
             this.result.perc_error = this.result.f_objective * 100;
+            this.result.length = this.simplexLength(s);
             % check stop conditions
             if this.result.flips >= this.stop_conditions.maxFlips || ...
-               this.result.perc_error <= this.stop_conditions.tolerance
+               this.result.perc_error <= this.stop_conditions.tolerance || ...
+               this.result.length <= this.stop_conditions.minLength
                 % TODO: check more stop conditions?
                 shouldContinue = false;
             end
