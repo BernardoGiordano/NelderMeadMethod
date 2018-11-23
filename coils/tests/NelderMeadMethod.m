@@ -43,9 +43,6 @@ methods
       
         % compute algorythm
         this.loop();
-        % display results
-        disp("Results")
-        disp(this.result);
 
         if this.settings.plot
             % draw f objective
@@ -358,6 +355,11 @@ methods
     % returns the side length of a simplex
     function l = simplexLength(this, P)
         l = norm(P(1, 1:this.settings.dimension) - P(2, 1:this.settings.dimension));
+    end
+    
+    % returns results
+    function res = getResults(this)
+        res = this.result;
     end
 end
     

@@ -11,7 +11,6 @@ hR = 0.8;
 hZ = 0.7;
 X = [hI hR];
 
-disp("Test parameters")
 %%%%%%%%%%%%%% EDIT ME %%%%%%%%%%%%%%
 test_params = struct( ...
     'dimension', 2, ...
@@ -28,6 +27,7 @@ test_params = struct( ...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 z = -test_params.sampling_range:test_params.sampling_step:test_params.sampling_range;
 test_params.sample_amount = length(z);
+disp("Test parameters")
 disp(test_params)
 
 %%%%%%%%%%%%%% EDIT ME %%%%%%%%%%%%%%
@@ -41,6 +41,9 @@ range = struct('Xmin', 0, 'Xmax', 6, 'Ymin', 0, 'Ymax', 1);
 stop_conditions = struct('maxFlips', test_params.max_flips, 'tolerance', test_params.tolerance, 'minLength', test_params.minLength);
 start_conditions = struct('start', test_params.start_point, 'length', test_params.length);
 obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings, range);
+% display results
+disp("Results")
+disp(obj.getResults());
 if test_params.plot
     % plot ideal minimum
     plot(X(1), X(2), 'x', 'color', 'g', 'lineWidth', 1.5);
