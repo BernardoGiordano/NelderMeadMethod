@@ -111,9 +111,9 @@ come:
  
 \begin{equation}
 	\begin{split}
-		F_{obj} =
-		& \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl[ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}+ \\
-		& -\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}-\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|^{2}\biggr]^{\!1/2}
+		F_{obj}(I_{2},R_{2},Z_{2}) =
+		& \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl[ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z_{k})^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z_{k})^{2}+R_{2}^{2})^{3/2}}+ \\
+		& -\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z_{k})^{2}+\tilde{R_{2}}^{2})^{3/2}}-\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z_{k})^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|^{2}\biggr]^{\!1/2}
 	\end{split} 
 \end{equation}
 \noindent
@@ -149,8 +149,66 @@ stimare una direzione di discesa della funzione obiettivo.
 
 \section*{Implementazione dell'algoritmo}
 
+L'algoritmo implementato per la soluzione del problema della ricerca del minimo
+consiste in una fase di \emph{inizializzazione}, una di \emph{loop} (nella quale vengono
+effettuate tutte le operazioni di ribaltamento e contrazione del simplesso) e
+una di \emph{controllo delle condizioni di arresto} del loop. \\ \\
+La fase di inizializzazione consiste nell'impostazione di tutte le variabili
+necessarie al funzionamento dell'algoritmo, che per design vengono
+parametrizzate, in modo tale da rendere comodo l'utilizzo dell'algoritmo in
+differenti condizioni iniziali, tra cui:
+\begin{itemize}
+\item \textbf{Passo di campionamento}, necessario all'approssimazione più o meno
+grossolana della funzione obiettivo da studiare.
+\item \textbf{Range dei parametri liberi}, con i quali si stabiliscono due
+valori limite che dovranno essere rispettati da tutte le variabili da
+ottimizzare.
+\item \textbf{Condizioni di arresto}, necessarie per stabilire fino a quanto
+l'algoritmo dovrà iterare per garantire dei risultati soddisfacenti. Tra le
+innumerevoli condizioni possibili, verranno considerate il \emph{massimo numero
+di ribaltamenti}, un valore di \emph{massimo errore percentuale} rispetto alla
+funzione desiderata e un vincolo sulla \emph{minima lunghezza del lato} del
+simplesso generato ad ogni passi.
+\item \textbf{Punto iniziale}, che condizionerà, insieme all'andamento della
+funzione, la generazione di determinati simplessi piuttosto che altri.
+\end{itemize}
 
-\section*{Analisi dei parametri}
+\noindent
+Una volta parametrizzate le condizioni iniziali, l'algoritmo entrerà in fase di
+loop, dove eseguirà ripetutamente le seguenti operazioni:
+
+\begin{enumerate}
+\item Un simplesso iniziale $s$ con centroide in $s_{0}$ viene aggiunto ad un
+array di simplessi $polytope$
+\item Controllo se un vertice di $s = polytope(end)$ ha vissuto per $k$ iterazioni
+\item Se si:
+\begin{enumerate}
+\item Trovo il vertice $i$ di $s$ dove $F_{obj}$ assume valore minore
+\item Dimezzo la lunghezza dei lati di $s$ lasciando fermo il vertice $i$,
+ottenendo $s_{new}$
+\end{enumerate}
+\item Se no:
+\begin{enumerate}
+\item Trovo il vertice $i$ di $s$ dove $F_{obj}$ assume valore massimo
+\item Ribalto $s$ tenendo fermi i vertici $k \ne i$, ottenendo $s_{new}$
+\item Se $F_{obj}(s(i)) \leq F_{obj}(s_{new}(i))$:
+\begin{enumerate}
+\item Trovo il secondo vertice $j$ di $s$ dove $F_{obj}$ assume valore massimo
+\item Ribalto $s$ tenendo fermi i vertici $k \ne j$, ottenendo $s_{new}$
+\end{enumerate}
+\end{enumerate}
+\item Aggiungo $s_{new}$ a $polytope$, $polytope(end+1) = s_{new}$
+\item Interrompi se almeno una condizione di arresto è verificata, altrimenti
+ripeti dal passo 2.
+\end{enumerate}
+
+\noindent
+L'algoritmo può essere schematizzato in maniera compatta secondo il seguente
+diagramma di flusso:
+
+% INSERIRE DIAGRAMMA
+
+\section*{Scelta dei parametri}
 
 Al fine di avvicinarci alla caratteristica descritta in $Fig. 2$, vanno
 scelti opportunamente il valore dei raggi, delle correnti e delle posizioni
@@ -163,6 +221,7 @@ relative a tutte le spire, comprese quelle da progettare (spire 2 e 4). \\ \\
 \centerline{ \textbf{Spira 6}: $R_{6}$ = 0.6m \\ $I_{6}$ = 2 A \\ $Z_{6}$ = 0.9m}
 
 \section*{Esperimenti}
+
 
 \begin{thebibliography}{9}
 	% \bibitem{id}Author\emph{title}[online]. Editor.
