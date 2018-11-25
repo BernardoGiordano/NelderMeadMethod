@@ -2,12 +2,12 @@
 \\begin{tabular}{|l|l|l|l|} 
 \\hline 
 Gradi di libertà & \\textbf{%d} &  &  \\\\ \\hline 
-Passo & \\textbf{%.3f} &  &  \\\\ \\hline 
-Punto di minimo & \\textbf{{[}%.3f %.3f %.3f{]}} & Punto di minimo & \\textbf{{[}%.3f %.3f %.3f{]}} \\\\ \\hline 
-Punto iniziale & \\textbf{{[}%.3f %.3f %.3f{]}} & Fobj nel punto & \\textbf{%.3f} \\\\ \\hline 
-Lunghezza iniziale & \\textbf{%.3f} & Lunghezza finale & \\textbf{%.3f} \\\\ \\hline
-Lunghezza minima & \\textbf{%.3f} & Dimezzamenti & \\textbf{%d} \\\\ \\hline 
+Passo & \\textbf{%.5f} &  &  \\\\ \\hline 
+Punto di minimo & \\textbf{{[}%.5f %.5f %.5f{]}} & Punto di minimo & \\textbf{{[}%.5f %.5f %.5f{]}} \\\\ \\hline 
+Punto iniziale & \\textbf{{[}%.5f %.5f %.5f{]}} & Fobj nel punto & \\textbf{%.5f} \\\\ \\hline 
+Lunghezza iniziale & \\textbf{%.5f} & Dimezzamenti & \\textbf{%d} \\\\ \\hline 
+Lunghezza minima & \\textbf{%.5f} & Lunghezza finale & \\textbf{%.5f} \\\\ \\hline
 Flip massimi & \\textbf{%d} & Flips & \\textbf{%d} \\\\ \\hline 
-Tolleranza & \\textbf{%.3f \\%%} & \\textbf{Perc. di errore} & \\textbf{%.3f \\%%} \\\\ \\hline 
+Tolleranza & \\textbf{%.5f\\%%} & \\textbf{Perc. di errore} & \\textbf{%.5f\\%%} \\\\ \\hline 
 \\end{tabular} 
 \\end{table}
