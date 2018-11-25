@@ -3,8 +3,8 @@
 \\hline 
 Gradi di libertà & \\textbf{%d} &  &  \\\\ \\hline 
 Passo & \\textbf{%.3f} &  &  \\\\ \\hline 
-Punto di minimo & \\textbf{{[}%.3f %.3f %.3f{]}} & Punto di minimo & \\textbf{{[}%.3f %.3f %.3f{]}} \\\\ \\hline 
-Punto iniziale & \\textbf{{[}%.3f %.3f %.3f{]}} & F_{obj} nel punto & \\textbf{%.3f} \\\\ \\hline 
+Punto di minimo & \\textbf{{[}%.3f %.3f{]}} & Punto di minimo & \\textbf{{[}%.3f %.3f{]}} \\\\ \\hline 
+Punto iniziale & \\textbf{{[}%.3f %.3f{]}} & Fobj nel punto & \\textbf{%.3f} \\\\ \\hline 
 Lunghezza iniziale & \\textbf{%.3f} & Lunghezza finale & \\textbf{%.3f} \\\\ \\hline
 Lunghezza minima & \\textbf{%.3f} & Dimezzamenti & \\textbf{%d} \\\\ \\hline 
 Flip massimi & \\textbf{%d} & Flips & \\textbf{%d} \\\\ \\hline 
