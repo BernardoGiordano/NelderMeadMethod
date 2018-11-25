@@ -36,17 +36,20 @@ fobj = @(x)((1/mean(Bz2d(X, z)))*(norm(Bz2d(x, z) - Bz2d(X, z))*sqrt(inv(length(
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % simplex algorythm
-settings = struct('step', test_params.sampling_step, 'slices', length(z), 'plot', test_params.plot, 'dimension', test_params.dimension);
+settings = struct('step', test_params.sampling_step, 'slices', floor(length(z)/2), 'plot', test_params.plot, 'dimension', test_params.dimension);
 range = struct('Xmin', 0, 'Xmax', 6, 'Ymin', 0, 'Ymax', 1);
 stop_conditions = struct('maxFlips', test_params.max_flips, 'tolerance', test_params.tolerance, 'minLength', test_params.minLength);
 start_conditions = struct('start', test_params.start_point, 'length', test_params.length);
 obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings, range);
+% label
+xlabel('I [A]');
+ylabel('Z [m]');
 % display results
 disp("Results")
 disp(obj.getResults());
 if test_params.plot
     % plot ideal minimum
-    plot(X(1), X(2), 'x', 'color', 'g', 'lineWidth', 1.5);
+    plot(X(1), X(2), 'x', 'color', 'y', 'lineWidth', 1.5);
 end
 
 function res = Bz2d(X, z)

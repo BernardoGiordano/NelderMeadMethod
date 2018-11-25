@@ -41,14 +41,17 @@ for i = 1:N
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % simplex algorythm
-    settings = struct('step', test_params.sampling_step, 'slices', length(z), 'plot', test_params.plot, 'dimension', test_params.dimension);
+    settings = struct('step', test_params.sampling_step, 'slices', floor(length(z)/2), 'plot', test_params.plot, 'dimension', test_params.dimension);
     range = struct('Xmin', 0, 'Xmax', 6, 'Ymin', 0, 'Ymax', 1, 'Zmin', 0, 'Zmax', 1);
     stop_conditions = struct('maxFlips', test_params.max_flips, 'tolerance', test_params.tolerance, 'minLength', test_params.minLength);
     start_conditions = struct('start', test_params.start_point, 'length', test_params.length);
     obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings, range);
+    xlabel('I [A]');
+    ylabel('R [m]');
+    zlabel('Z [m]');
     % if test_params.plot
         % plot ideal minimum
-        % plot3(X(1), X(2), X(3), 'x', 'color', 'g', 'lineWidth', 1.5);
+        % plot3(X(1), X(2), X(3), 'x', 'color', 'y', 'lineWidth', 1.5);
     % end
     results = obj.getResults();
     vI(i) = results.minimum(1);

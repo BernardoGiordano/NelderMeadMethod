@@ -47,6 +47,7 @@ zlabel('Z [m]')
 % display results
 disp("Results")
 disp(obj.getResults());
+dumpResults(test_params, obj.getResults());
 if test_params.plot
     % plot ideal minimum
     plot3(X(1), X(2), X(3), 'x', 'color', 'y', 'lineWidth', 1.5);
