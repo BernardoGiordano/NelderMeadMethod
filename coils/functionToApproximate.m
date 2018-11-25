@@ -10,9 +10,9 @@ I = [3 5 2];
 Z = [0.4 0.7 0.9];
 
 % the actual script
-maxZ = max(Z)*2; % evaluate until 2 times the position of the last coil
+maxZ = 3; % evaluate until 2 times the position of the last coil
 step = 0.01; % arbitrary
-z = -4:0.01:4; % independant variable
+z = -maxZ:0.01:maxZ; % independant variable
 bz = symmetricCoilMagneticField(R, I, Z, z);
 
 % plot results
@@ -26,10 +26,10 @@ plot(x, y, 'color', 'k', 'lineWidth', 1);
 plot(0, y(2), '^', 'color', 'k', 'lineWidth', 1, 'MarkerFaceColor', 'k')
 
 % title('Magnetic field for N symmetric coils given Z, R and I')
-ylabel('$\tilde{B_{z}}$','Interpreter','latex')
-xlabel('z')
-set(gca, 'xticklabel', []);
-set(gca, 'yticklabel', []);
+ylabel('$\tilde{B_{z}}$ [T]', 'Interpreter', 'latex', 'fontweight', 'bold', 'fontsize', 13)
+xlabel('z [m]')
+% set(gca, 'xticklabel', []);
+% set(gca, 'yticklabel', []);
 
 % function to evaluate magnetic field on the Z axis
 function bz = symmetricCoilMagneticField(R, I, Z, z)
