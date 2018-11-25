@@ -46,10 +46,10 @@ for i = 1:N
     stop_conditions = struct('maxFlips', test_params.max_flips, 'tolerance', test_params.tolerance, 'minLength', test_params.minLength);
     start_conditions = struct('start', test_params.start_point, 'length', test_params.length);
     obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings, range);
-    xlabel('I [A]');
-    ylabel('R [m]');
-    zlabel('Z [m]');
     % if test_params.plot
+        % xlabel('I [A]');
+        % ylabel('R [m]');
+        % zlabel('Z [m]');
         % plot ideal minimum
         % plot3(X(1), X(2), X(3), 'x', 'color', 'y', 'lineWidth', 1.5);
     % end

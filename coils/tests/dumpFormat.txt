@@ -1,13 +1,13 @@
-\\begin{table}[] 
+\\begin{table}[h] 
 \\begin{tabular}{|l|l|l|l|} 
 \\hline 
-\\cellcolor[HTML]{EFEFEF}Gradi di libertà & \\cellcolor[HTML]{EFEFEF}\\textbf{%d} &  &  \\\\ \\hline 
+Gradi di libertà & \\textbf{%d} &  &  \\\\ \\hline 
 Passo & \\textbf{%.3f} &  &  \\\\ \\hline 
-\\cellcolor[HTML]{EFEFEF}Punto di minimo & \\cellcolor[HTML]{EFEFEF}\\textbf{{[}%.5f %.5f %.5f{]}} & Punto di minimo & \\textbf{{[}%.5f %.5f %.5f{]}} \\\\ \\hline 
-Punto iniziale & \\textbf{{[}%.5f %.5f %.5f{]}} & \\cellcolor[HTML]{EFEFEF}Fobj nel punto & \\cellcolor[HTML]{EFEFEF}\\textbf{%.5f} \\\\ \\hline 
-\\cellcolor[HTML]{EFEFEF}Lunghezza iniziale & \\cellcolor[HTML]{EFEFEF}\\textbf{%.5f} & Lunghezza finale & \\textbf{%.5f} \\\\ \\hline 
-\\cellcolor[HTML]{EFEFEF}Flip massimi & \\cellcolor[HTML]{EFEFEF}\\textbf{%d} & Flips & \\textbf{%d} \\\\ \\hline 
-Tolleranza & \\textbf{%.3f %%} & \\cellcolor[HTML]{EFEFEF}\\textbf{Perc. di errore} & \\cellcolor[HTML]{EFEFEF}\\textbf{%.3f %%} \\\\ \\hline 
-Lunghezza minima & \\textbf{%.5f} & \\cellcolor[HTML]{EFEFEF}Dimezzamenti & \\cellcolor[HTML]{EFEFEF}\\textbf{%d} \\\\ \\hline 
+Punto di minimo & \\textbf{{[}%.3f %.3f %.3f{]}} & Punto di minimo & \\textbf{{[}%.3f %.3f %.3f{]}} \\\\ \\hline 
+Punto iniziale & \\textbf{{[}%.3f %.3f %.3f{]}} & F_{obj} nel punto & \\textbf{%.3f} \\\\ \\hline 
+Lunghezza iniziale & \\textbf{%.3f} & Lunghezza finale & \\textbf{%.3f} \\\\ \\hline
+Lunghezza minima & \\textbf{%.3f} & Dimezzamenti & \\textbf{%d} \\\\ \\hline 
+Flip massimi & \\textbf{%d} & Flips & \\textbf{%d} \\\\ \\hline 
+Tolleranza & \\textbf{%.3f \\%%} & \\textbf{Perc. di errore} & \\textbf{%.3f \\%%} \\\\ \\hline 
 \\end{tabular} 
 \\end{table}

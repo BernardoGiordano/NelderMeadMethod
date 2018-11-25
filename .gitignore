@@ -8,3 +8,4 @@
 *.pdf
 *.synctex.gz
 dump.txt
+*.vpp.bak*

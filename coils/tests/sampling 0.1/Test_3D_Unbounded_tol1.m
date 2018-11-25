@@ -13,7 +13,7 @@ X = [hI hR hZ];
 %%%%%%%%%%%%%% EDIT ME %%%%%%%%%%%%%%
 test_params = struct( ...
     'dimension', 3, ...
-    'plot', true, ...
+    'plot', false, ...
     'minimum', X, ...
     'sampling_step', 0.1, ...
     'sampling_range', 3, ...
@@ -40,15 +40,15 @@ range = struct('Xmin', 0, 'Xmax', 6, 'Ymin', 0, 'Ymax', 1, 'Zmin', 0, 'Zmax', 1)
 stop_conditions = struct('maxFlips', test_params.max_flips, 'tolerance', test_params.tolerance, 'minLength', test_params.minLength);
 start_conditions = struct('start', test_params.start_point, 'length', test_params.length);
 obj = NelderMeadMethod(fobj, bounds, stop_conditions, start_conditions, settings, range);
-% labels
-xlabel('I [A]')
-ylabel('R [m]')
-zlabel('Z [m]')
 % display results
 disp("Results")
 disp(obj.getResults());
 dumpResults(test_params, obj.getResults());
 if test_params.plot
+    % labels
+    xlabel('I [A]')
+    ylabel('R [m]')
+    zlabel('Z [m]')
     % plot ideal minimum
     plot3(X(1), X(2), X(3), 'x', 'color', 'y', 'lineWidth', 1.5);
 end
