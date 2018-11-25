@@ -25,6 +25,9 @@ methods
         this.start_conditions = start_conditions;
         this.settings = settings;
         this.range = range;
+
+        % increase digits for reading purposes
+        format LONG
         
         % plot setup
         if this.settings.plot
