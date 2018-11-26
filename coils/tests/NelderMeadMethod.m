@@ -149,7 +149,7 @@ methods
     function v = isTooOld(this, s)
         v = false;
         % TODO: parametrize n
-        n = 20;
+        n = 8;
         [N, ~] = size(s);
         for i = 1:N
             if s(i, this.settings.dimension + 1) == n
