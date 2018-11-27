@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{caption}
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\refname}{Bibliografia}
 
@@ -217,7 +218,6 @@ diagramma di flusso:
 \end{figure}
 \noindent
 
-
 \section*{Scelta dei parametri}
 
 Al fine di avvicinarci alla caratteristica descritta in $Fig. 2$, vanno scelti
@@ -244,7 +244,9 @@ spira da progettare, in modo tale che entrambe non superino $1 m$.
 In questo test, l'algoritmo si ferma quando la percentuale di errore scende al
 di sotto del valore di tolleranza ammesso.
 
-\begin{table}[h] 
+\begin{table}[h]
+	\caption{Test 1}
+	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
 	Gradi di libertà & \textbf{3} &  &  \\ \hline 
@@ -255,7 +257,8 @@ di sotto del valore di tolleranza ammesso.
 	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00391} \\ \hline
 	Flip massimi & \textbf{1000} & Flips & \textbf{309} \\ \hline 
 	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.989\%} \\ \hline 
-	\end{tabular} 
+	\end{tabular}
+	\end{center}
 	\end{table}
 
 \noindent
@@ -265,6 +268,8 @@ che noi facciamo coincidere con la massima risoluzione rispetto alla quale
 valuteremo i parametri nello spazio di ricerca.
 
 \begin{table}[h] 
+	\caption{Test 2}
+	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
 	Gradi di libertà & \textbf{3} &  &  \\ \hline 
@@ -276,6 +281,7 @@ valuteremo i parametri nello spazio di ricerca.
 	Flip massimi & \textbf{1000} & Flips & \textbf{363} \\ \hline 
 	Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.398\%} \\ \hline 
 	\end{tabular} 
+	\end{center}
 	\end{table}
 
 \noindent
@@ -284,6 +290,8 @@ la percentuale di errore aumenta. Nel seguente test, la tolleranza $1\%$ causa
 l'arresto dell'algoritmo.
 
 \begin{table}[h] 
+	\caption{Test 3}
+	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
 	Gradi di libertà & \textbf{3} &  &  \\ \hline 
@@ -295,6 +303,7 @@ l'arresto dell'algoritmo.
 	Flip massimi & \textbf{1000} & Flips & \textbf{259} \\ \hline 
 	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.998\%} \\ \hline 
 	\end{tabular} 
+	\end{center}
 	\end{table}
 
 \noindent
@@ -305,6 +314,8 @@ campionamento più fitto, la funziona sarà a sua volta più definita e quindi
 l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento è necessario.
 
 \begin{table}[h] 
+	\caption{Test 4}
+	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
 	Gradi di libertà & \textbf{3} &  &  \\ \hline 
@@ -315,7 +326,29 @@ l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento
 	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\ \hline
 	Flip massimi & \textbf{1000} & Flips & \textbf{309} \\ \hline 
 	Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.651\%} \\ \hline 
-	\end{tabular} 
+	\end{tabular}
+	\end{center}
 	\end{table}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=16cm]{assets/figure4}
+		\caption{Ricerca del minimo non vincolato con 3 parametri liberi, test 1.}
+\end{figure}
+\noindent 
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=14cm]{assets/figure5}
+		\caption{Dettaglio del politopo generato al test 1.}
+\end{figure}
+\noindent 
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=14cm]{assets/figure6}
+		\caption{Dettaglio del politopo generato al test 1.}
+\end{figure}
+\noindent 
 
 \end{document}
