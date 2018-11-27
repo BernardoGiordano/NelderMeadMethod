@@ -240,6 +240,7 @@ Limiteremo a priori, inoltre, il massimo raggio e la massima posizione della
 spira da progettare, in modo tale che entrambe non superino $1 m$.
 
 \section*{Esperimenti}
+\section{Minimo in 3 dimensioni senza vincoli}
 
 In questo test, l'algoritmo si ferma quando la percentuale di errore scende al
 di sotto del valore di tolleranza ammesso.
@@ -318,7 +319,7 @@ l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento
 	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
-	Gradi di libertà & \textbf{3} &  &  \\ \hline 
+	Gradi di libertà & \textbf{3} & Campioni & \textbf{61} \\ \hline 
 	Passo & \textbf{0.01000} & Campioni & \textbf{601} \\ \hline 
 	Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.968 0.794 0.699{]}} \\ \hline 
 	Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto & \textbf{0.00651} \\ \hline 
@@ -349,6 +350,69 @@ l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento
 		\includegraphics[width=14cm]{assets/figure6}
 		\caption{Dettaglio del politopo generato al test 1.}
 \end{figure}
-\noindent 
+\noindent
+
+\newpage
+\section{Minimo in 3 dimensioni con vincolo di disuguaglianza}
+
+Effettuiamo un test per verificare il corretto funzionamento dell'algoritmo e i
+risultati in presenza di un vincolo di disuguaglianza $R \le 2Z$. Come si evince
+dai due test effettuati con gli stessi parametri ma con un punto iniziale
+diverso, è evidente che i risultati sono anche molto diversi a seconda del punto.
+
+\begin{table}[h]
+	\caption{Test 5}
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{3} &  &  \\ \hline 
+	Passo & \textbf{0.100} &  &  \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.093 0.991 0.495{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}4.000 0.400 0.100{]}} & Fobj nel punto & \textbf{0.320} \\ \hline 
+	Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{9} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{104} \\ \hline 
+	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{32.012\%} \\ \hline 
+	\end{tabular} 
+	\end{center}
+	\end{table}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=14cm]{assets/figure7}
+		\caption{Test con vincolo attivo di disuguaglianza.}
+\end{figure}
+\noindent
+
+\begin{table}[h]
+	\caption{Test 6}
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{3} &  &  \\ \hline 
+	Passo & \textbf{0.100} &  &  \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}3.406 0.885 0.442{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.400 0.100{]}} & Fobj nel punto & \textbf{0.449} \\ \hline 
+	Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{9} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{122} \\ \hline 
+	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{44.908\%} \\ \hline 
+	\end{tabular}
+	\end{center}
+	\end{table}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=16cm]{assets/figure8}
+		\caption{Test con vincolo attivo di disuguaglianza.}
+\end{figure}
+\noindent
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=13cm]{assets/figure9}
+		\caption{Test con vincolo attivo di disuguaglianza.}
+\end{figure}
+\noindent
 
 \end{document}
