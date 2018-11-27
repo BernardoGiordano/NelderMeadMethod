@@ -240,9 +240,82 @@ Limiteremo a priori, inoltre, il massimo raggio e la massima posizione della
 spira da progettare, in modo tale che entrambe non superino $1 m$.
 
 \section*{Esperimenti}
-\paragraph{Minimo non vincolato - 3 gradi di libertà}
 
-\begin{thebibliography}{9}
-	% \bibitem{id}Author\emph{title}[online]. Editor.
-\end{thebibliography}
+In questo test, l'algoritmo si ferma quando la percentuale di errore scende al
+di sotto del valore di tolleranza ammesso.
+
+\begin{table}[h] 
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{3} &  &  \\ \hline 
+	Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.953 0.791 0.699{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto & \textbf{0.00989} \\ \hline 
+	Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{7} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00391} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{309} \\ \hline 
+	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.989\%} \\ \hline 
+	\end{tabular} 
+	\end{table}
+
+\noindent
+Abbassando la percentuale di errore ammissibile, miglioriamo i risultati
+dell'algoritmo andando a raggiungere la lunghezza minima del lato del simplesso,
+che noi facciamo coincidere con la massima risoluzione rispetto alla quale
+valuteremo i parametri nello spazio di ricerca.
+
+\begin{table}[h] 
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{3} &  &  \\ \hline 
+	Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.981 0.796 0.699{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto & \textbf{0.00398} \\ \hline 
+	Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{9} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{363} \\ \hline 
+	Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.398\%} \\ \hline 
+	\end{tabular} 
+	\end{table}
+
+\noindent
+Ripetendo gli stessi test con un passo di campionamento più fitto, si nota che
+la percentuale di errore aumenta. Nel seguente test, la tolleranza $1\%$ causa
+l'arresto dell'algoritmo.
+
+\begin{table}[h] 
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{3} &  &  \\ \hline 
+	Passo & \textbf{0.0100} & Campioni & \textbf{601} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.954 0.789 0.698{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto & \textbf{0.00998} \\ \hline 
+	Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{6} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00781} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{259} \\ \hline 
+	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.998\%} \\ \hline 
+	\end{tabular} 
+	\end{table}
+
+\noindent
+Abbassando la percentuale di errore, si nota che l'algoritmo si ferma a causa
+della lunghezza finale del lato del simplesso troppo bassa. Questa è una
+conseguenza del fatto che, avendo aumentato la risoluzione con il passo di
+campionamento più fitto, la funziona sarà a sua volta più definita e quindi
+l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento è necessario.
+
+\begin{table}[h] 
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{3} &  &  \\ \hline 
+	Passo & \textbf{0.01000} & Campioni & \textbf{601} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.968 0.794 0.699{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto & \textbf{0.00651} \\ \hline 
+	Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{9} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{309} \\ \hline 
+	Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.651\%} \\ \hline 
+	\end{tabular} 
+	\end{table}
+
 \end{document}
