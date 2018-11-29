@@ -253,17 +253,12 @@ methods
     
     function plotFunction(this, f, isBound)
         % divide plot in blocks
-        if this.settings.dimension == 3
-            X = this.range.Xmin:(this.range.Xmax-this.range.Xmin)/this.settings.slices:this.range.Xmax;
-            Y = this.range.Ymin:(this.range.Ymax-this.range.Ymin)/this.settings.slices:this.range.Ymax;
-            Z = this.range.Zmin:(this.range.Zmax-this.range.Zmin)/this.settings.slices:this.range.Zmax;
-        elseif this.settings.dimension == 2
-            [X, Y] = meshgrid(this.range.Xmin:(this.range.Xmax-this.range.Xmin)/this.settings.slices:this.range.Xmax, ...
-                              this.range.Ymin:(this.range.Ymax-this.range.Ymin)/this.settings.slices:this.range.Ymax);
-        end
+        X = this.range.Xmin:(this.range.Xmax-this.range.Xmin)/this.settings.slices:this.range.Xmax;
+        Y = this.range.Ymin:(this.range.Ymax-this.range.Ymin)/this.settings.slices:this.range.Ymax;
         lenX = length(X);
         lenY = length(Y);
         if this.settings.dimension == 3
+            Z = this.range.Zmin:(this.range.Zmax-this.range.Zmin)/this.settings.slices:this.range.Zmax;
             lenZ = length(Z);
         end
         
@@ -303,7 +298,7 @@ methods
             if isBound
                 V = this.clearBounds(V);
             end
-            surf(X, Y, V, 'FaceAlpha', 0.3, 'LineStyle', 'none');
+            surf(X, Y, V, 'FaceAlpha', 0.3, 'FaceAlpha', 0.3, 'LineStyle', 'none', 'FaceColor', 'interp');
         end
         this.internal.func_counter = this.internal.func_counter + 1;
     end
