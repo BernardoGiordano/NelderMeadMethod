@@ -2,9 +2,9 @@ close all
 clear all
 clc
 
-testI = [4.953 4.981 4.954 4.968 4.093 3.406];
-testR = [0.791 0.796 0.789 0.794 0.991 0.885];
-testZ = [0.699 0.699 0.698 0.699 0.495 0.442];
+testI = [4.968 4.093 4.097];
+testR = [0.794 0.991 1];
+testZ = [0.699 0.495 0.499];
 
 % coil radius [m]
 R = [0.7 0.8 0.6];
@@ -21,9 +21,6 @@ bz = symmetricCoilMagneticField(R, I, Z, z);
 bz1 = symmetricCoilMagneticField([R(1) testR(1) R(3)], [I(1) testI(1) I(3)], [Z(1) testZ(1) Z(3)], z);
 bz2 = symmetricCoilMagneticField([R(1) testR(2) R(3)], [I(1) testI(2) I(3)], [Z(1) testZ(2) Z(3)], z);
 bz3 = symmetricCoilMagneticField([R(1) testR(3) R(3)], [I(1) testI(3) I(3)], [Z(1) testZ(3) Z(3)], z);
-bz4 = symmetricCoilMagneticField([R(1) testR(4) R(3)], [I(1) testI(4) I(3)], [Z(1) testZ(4) Z(3)], z);
-bz5 = symmetricCoilMagneticField([R(1) testR(5) R(3)], [I(1) testI(5) I(3)], [Z(1) testZ(5) Z(3)], z);
-bz6 = symmetricCoilMagneticField([R(1) testR(6) R(3)], [I(1) testI(6) I(3)], [Z(1) testZ(6) Z(3)], z);
 
 % plot results
 hold on
@@ -33,10 +30,7 @@ plot(z, bz, '--', 'lineWidth', 0.5);
 plot(z, bz1, 'lineWidth', 1);
 plot(z, bz2, 'lineWidth', 1);
 plot(z, bz3, 'lineWidth', 1);
-plot(z, bz4, 'lineWidth', 1);
-plot(z, bz5, 'lineWidth', 1);
-plot(z, bz6, 'lineWidth', 1);
-legend('Ideale', 'Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5', 'Test 6')
+legend('Ideale', '3D senza vincoli 0.1%', '3D vincolo dis.', '2D vincolo ug.')
 %y = [0 max(bz) * 1.25];
 %x = [0 0];
 %plot(x, y, 'color', 'k', 'lineWidth', 1);
