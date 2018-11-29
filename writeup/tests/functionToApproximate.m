@@ -30,7 +30,7 @@ plot(z, bz, '--', 'lineWidth', 0.5);
 plot(z, bz1, 'lineWidth', 1);
 plot(z, bz2, 'lineWidth', 1);
 plot(z, bz3, 'lineWidth', 1);
-legend('Ideale', '3D senza vincoli 0.1%', '3D vincolo dis.', '2D vincolo ug.')
+legend('Ideale', '3D senza vincoli', '3D vincolo dis.', '2D vincolo ug.')
 %y = [0 max(bz) * 1.25];
 %x = [0 0];
 %plot(x, y, 'color', 'k', 'lineWidth', 1);
