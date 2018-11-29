@@ -240,13 +240,64 @@ Limiteremo a priori, inoltre, il massimo raggio e la massima posizione della
 spira da progettare, in modo tale che entrambe non superino $1 m$.
 
 \section*{Esperimenti}
-\section{Minimo in 3 dimensioni senza vincoli}
+\section{Minimo in 2 dimensioni senza vincoli}
 
-In questo test, l'algoritmo si ferma quando la percentuale di errore scende al
-di sotto del valore di tolleranza ammesso.
+Il primo test effettuato è stata la ricerca del minimo con due gradi di libertà,
+supponendo che la variabile $Z$ sia fissata. Il test sarà ripetuto in due
+diverse condizioni iniziali, in modo tale da poter apprezzare la differenza
+nell'errore percentuale al variare del numero di campioni e della percentuale
+minima di errore ammessa. \\
+Come si evince dalle tabelle, i risultati sono più soddisfacenti con un maggior
+numero di campioni.
 
 \begin{table}[h]
 	\caption{Test 1}
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{2} &  &  \\ \hline 
+	Passo & \textbf{0.1000} & Campioni & \textbf{61} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.986 0.793{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.00478} \\ \hline 
+	Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{4} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.032} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{55} \\ \hline 
+	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.478\%} \\ \hline 
+	\end{tabular}
+	\end{center}
+	\end{table}
+
+\begin{table}[h]
+	\caption{Test 2}
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{2} &  &  \\ \hline 
+	Passo & \textbf{0.0100} & Campioni & \textbf{601} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.998 0.800{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.000560} \\ \hline 
+	Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{7} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00406} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{90} \\ \hline 
+	Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.0563\%} \\ \hline 
+	\end{tabular} 
+	\end{center}
+	\end{table}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=15cm]{assets/figure10}
+		\caption{Test con due gradi di libertà senza vincoli.}
+\end{figure}
+
+\section{Minimo in 3 dimensioni senza vincoli}
+
+Proponiamo adesso dei test di ricerca del minimo non vincolato con 3 gradi di
+libertà. Differentemente dal caso in due dimensioni, la percentuale di errore
+aumenta all'aumentare del numero di campioni, a parità di percentuale di errore massima.
+
+\begin{table}[h]
+	\caption{Test 3}
 	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
@@ -269,7 +320,7 @@ che noi facciamo coincidere con la massima risoluzione rispetto alla quale
 valuteremo i parametri nello spazio di ricerca.
 
 \begin{table}[h] 
-	\caption{Test 2}
+	\caption{Test 4}
 	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
@@ -291,7 +342,7 @@ la percentuale di errore aumenta. Nel seguente test, la tolleranza $1\%$ causa
 l'arresto dell'algoritmo.
 
 \begin{table}[h] 
-	\caption{Test 3}
+	\caption{Test 5}
 	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
@@ -315,7 +366,7 @@ campionamento più fitto, la funziona sarà a sua volta più definita e quindi
 l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento è necessario.
 
 \begin{table}[h] 
-	\caption{Test 4}
+	\caption{Test 6}
 	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
@@ -334,34 +385,34 @@ l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=16cm]{assets/figure4}
-		\caption{Ricerca del minimo non vincolato con 3 parametri liberi, test 1.}
+		\caption{Ricerca del minimo non vincolato con 3 parametri liberi, test 5.}
 \end{figure}
 \noindent 
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=14cm]{assets/figure5}
-		\caption{Dettaglio del politopo generato al test 1.}
+		\caption{Dettaglio del politopo generato al test 5.}
 \end{figure}
 \noindent 
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=14cm]{assets/figure6}
-		\caption{Dettaglio del politopo generato al test 1.}
+		\caption{Dettaglio del politopo generato al test 5.}
 \end{figure}
 \noindent
 
 \newpage
 \section{Minimo in 3 dimensioni con vincolo di disuguaglianza}
 
-Effettuiamo un test per verificare il corretto funzionamento dell'algoritmo e i
-risultati in presenza di un vincolo di disuguaglianza $R \le 2Z$. Come si evince
+Effettuiamo un test per verificare il corretto funzionamento dell'algoritmo e
+appurarne le prestazioni in presenza di un vincolo di disuguaglianza $R \le 2Z$. Come si evince
 dai due test effettuati con gli stessi parametri ma con un punto iniziale
 diverso, è evidente che i risultati sono anche molto diversi a seconda del punto.
 
 \begin{table}[h]
-	\caption{Test 5}
+	\caption{Test 7}
 	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
@@ -385,7 +436,7 @@ diverso, è evidente che i risultati sono anche molto diversi a seconda del punt
 \noindent
 
 \begin{table}[h]
-	\caption{Test 6}
+	\caption{Test 8}
 	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
@@ -415,74 +466,25 @@ diverso, è evidente che i risultati sono anche molto diversi a seconda del punt
 \end{figure}
 
 \newpage
-\section{Minimo in 2 dimensioni senza vincoli}
-
-Anche in questo caso, lo stesso test effettuato prima su un numero di campioni e
-poi su un numero maggiore, considerando anche una percentuale di errore limite
-minore.
-I risultati sono più soddisfacenti nel secondo caso, a differenza dei casi
-precedenti in 3D senza vincoli.
-
-\begin{table}[h]
-	\caption{Test 7}
-	\begin{center}
-	\begin{tabular}{|l|l|l|l|} 
-	\hline 
-	Gradi di libertà & \textbf{2} &  &  \\ \hline 
-	Passo & \textbf{0.1000} & Campioni & \textbf{61} \\ \hline 
-	Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.986 0.793{]}} \\ \hline 
-	Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.00478} \\ \hline 
-	Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{4} \\ \hline 
-	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.032} \\ \hline
-	Flip massimi & \textbf{1000} & Flips & \textbf{55} \\ \hline 
-	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.478\%} \\ \hline 
-	\end{tabular}
-	\end{center}
-	\end{table}
-
-\begin{table}[h]
-	\caption{Test 8}
-	\begin{center}
-	\begin{tabular}{|l|l|l|l|} 
-	\hline 
-	Gradi di libertà & \textbf{2} &  &  \\ \hline 
-	Passo & \textbf{0.0100} & Campioni & \textbf{601} \\ \hline 
-	Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.998 0.800{]}} \\ \hline 
-	Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.000560} \\ \hline 
-	Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{7} \\ \hline 
-	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00406} \\ \hline
-	Flip massimi & \textbf{1000} & Flips & \textbf{90} \\ \hline 
-	Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.0563\%} \\ \hline 
-	\end{tabular} 
-	\end{center}
-	\end{table}
-
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=15cm]{assets/figure10}
-		\caption{Test con due gradi di libertà senza vincoli.}
-\end{figure}
-
-\newpage
 \section{Minimo in 2 dimensioni: vincolo di uguaglianza}
 
 I seguenti test sono stati effettuati sotto effetto del vincolo di uguaglianza $R
-\le Z$. Da considerare inoltre che verranno tenuti in considerazione i vincoli
+= 2Z$. Da considerare inoltre che verranno tenuti in considerazione i vincoli
 di progetto imposti a priori, ovvero $R \le 1m$ e $Z \le 1m$. Siccome vale il
 vincolo descritto precedentemente, il valore di $Z$ non potrà essere superiore a
 $0.5m$ altrimenti la ricerca comporterebbe risultati che non sono compatibili
 con i limiti progettuali imposti. \\
-Le prove effettaute con diversi parametri (ma stesso punto iniziale) portano
+Le prove effettuate con diversi parametri (ma stesso punto iniziale) portano
 agli stessi risultati in termine di percentuale di errore dalla funzione desiderata.
 
 \begin{table}[h]
-	\caption{Test 8}
+	\caption{Test 9 - Incognite $I$ e $Z$}
 	\begin{center}
 	\begin{tabular}{|l|l|l|l|} 
 	\hline 
 	Gradi di libertà & \textbf{2} &  &  \\ \hline 
 	Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
-	Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.097 0.499{]}} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.700{]}} & Punto di minimo & \textbf{{[}4.097 0.499{]}} \\ \hline 
 	Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.354} \\ \hline 
 	Lunghezza iniziale & \textbf{0.200} & Dimezzamenti & \textbf{9} \\ \hline 
 	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000680} \\ \hline
@@ -497,5 +499,7 @@ agli stessi risultati in termine di percentuale di errore dalla funzione desider
 		\includegraphics[width=15cm]{assets/figure11}
 		\caption{Test con vincolo di uguaglianza.}
 \end{figure}
+
+\section*{Risultati e considerazioni}
 
 \end{document}
