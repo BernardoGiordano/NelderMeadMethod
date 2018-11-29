@@ -413,6 +413,89 @@ diverso, è evidente che i risultati sono anche molto diversi a seconda del punt
 		\includegraphics[width=13cm]{assets/figure9}
 		\caption{Test con vincolo attivo di disuguaglianza.}
 \end{figure}
-\noindent
+
+\newpage
+\section{Minimo in 2 dimensioni senza vincoli}
+
+Anche in questo caso, lo stesso test effettuato prima su un numero di campioni e
+poi su un numero maggiore, considerando anche una percentuale di errore limite
+minore.
+I risultati sono più soddisfacenti nel secondo caso, a differenza dei casi
+precedenti in 3D senza vincoli.
+
+\begin{table}[h]
+	\caption{Test 7}
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{2} &  &  \\ \hline 
+	Passo & \textbf{0.1000} & Campioni & \textbf{61} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.986 0.793{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.00478} \\ \hline 
+	Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{4} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.032} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{55} \\ \hline 
+	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.478\%} \\ \hline 
+	\end{tabular}
+	\end{center}
+	\end{table}
+
+\begin{table}[h]
+	\caption{Test 8}
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{2} &  &  \\ \hline 
+	Passo & \textbf{0.0100} & Campioni & \textbf{601} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.998 0.800{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.000560} \\ \hline 
+	Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{7} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00406} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{90} \\ \hline 
+	Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.0563\%} \\ \hline 
+	\end{tabular} 
+	\end{center}
+	\end{table}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=15cm]{assets/figure10}
+		\caption{Test con due gradi di libertà senza vincoli.}
+\end{figure}
+
+\newpage
+\section{Minimo in 2 dimensioni: vincolo di uguaglianza}
+
+I seguenti test sono stati effettuati sotto effetto del vincolo di uguaglianza $R
+\le Z$. Da considerare inoltre che verranno tenuti in considerazione i vincoli
+di progetto imposti a priori, ovvero $R \le 1m$ e $Z \le 1m$. Siccome vale il
+vincolo descritto precedentemente, il valore di $Z$ non potrà essere superiore a
+$0.5m$ altrimenti la ricerca comporterebbe risultati che non sono compatibili
+con i limiti progettuali imposti. \\
+Le prove effettaute con diversi parametri (ma stesso punto iniziale) portano
+agli stessi risultati in termine di percentuale di errore dalla funzione desiderata.
+
+\begin{table}[h]
+	\caption{Test 8}
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|} 
+	\hline 
+	Gradi di libertà & \textbf{2} &  &  \\ \hline 
+	Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
+	Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.097 0.499{]}} \\ \hline 
+	Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.354} \\ \hline 
+	Lunghezza iniziale & \textbf{0.200} & Dimezzamenti & \textbf{9} \\ \hline 
+	Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000680} \\ \hline
+	Flip massimi & \textbf{1000} & Flips & \textbf{151} \\ \hline 
+	Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{35.355\%} \\ \hline 
+	\end{tabular} 
+	\end{center}
+	\end{table}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=15cm]{assets/figure11}
+		\caption{Test con vincolo di uguaglianza.}
+\end{figure}
 
 \end{document}
