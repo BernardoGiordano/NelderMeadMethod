@@ -84,13 +84,18 @@ norma si scriverà come:
 \begin{equation}
     \begin{split}
         ||B_{z_{2}}-\tilde{B_{z_{2}}}||
-        =& \Bigl|\Bigl|\frac{\mu_{0}}{2}(\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}})+ \\
-         & -\frac{\mu_{0}}{2}(\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}-\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}})\Bigr|\Bigr| \\
-        =& \frac{\mu_{0}}{2}\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}+ \\
-         & -\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}-\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|
+        =& \Bigl|\Bigl|\frac{\mu_{0}}{2}(\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}})-\tilde{B_{z_{2}}}\Bigr|\Bigr| \\
+        =& \frac{\mu_{0}}{2}\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}-\frac{2}{\mu_{0}}\tilde{B_{z_{2}}}\Bigr|\Bigr|
     \end{split} 
 \end{equation}
+
 \noindent
+La funzione che quindi descrive la discrepanza del campo magnetico da progettaree
+quello desiderato su tutto l'asse $z$ è 
+
+\[F_{obj}=2\int_{0}^{+\infty}|B_{z_{2}}-\tilde{B_{z_{2}}}|dz\]
+
+\[F_{obj}=\frac{1}{N_{p}}\sum\limits_{k=1}^{Np} ||B_{z_{2k}}-\tilde{B_{z_{2k}}}||\]
 
 \section*{Campionamento e normalizzazione}
 
@@ -115,8 +120,7 @@ come:
 \begin{equation}
     \begin{split}
         F_{obj}(I_{2},R_{2},Z_{2}) =
-        & \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl[ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z_{k})^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z_{k})^{2}+R_{2}^{2})^{3/2}}+ \\
-        & -\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z_{k})^{2}+\tilde{R_{2}}^{2})^{3/2}}-\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z_{k})^{2}+\tilde{R_{2}}^{2})^{3/2}}\Bigr|\Bigr|^{2}\biggr]^{\!1/2}
+        & \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl[ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z_{k})^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z_{k})^{2}+R_{2}^{2})^{3/2}}-\tilde{B^*_{z_{2k}}}\Bigr|\Bigr|^{2}\biggr]^{\!1/2}
     \end{split} 
 \end{equation}
 \noindent
@@ -243,110 +247,45 @@ spira da progettare, in modo tale che entrambe non superino $1 m$.
 \section{Minimo in 2 dimensioni senza vincoli}
 
 Il primo test effettuato è stata la ricerca del minimo con due gradi di libertà,
-supponendo che la variabile $Z = 0.7m$ sia fissata. Il test sarà ripetuto in due
-diverse condizioni iniziali, in modo tale da poter apprezzare la differenza
-nell'errore percentuale al variare del numero di campioni e della percentuale
-minima di errore ammessa. \\
-Come si evince dalle tabelle, i risultati sono più soddisfacenti con un maggior
-numero di campioni.
+supponendo che la variabile $Z = 0.7m$ sia fissata. Otteniamo i seguenti
+risultati:
+%Il test sarà ripetuto in due
+%diverse condizioni iniziali, in modo tale da poter apprezzare la differenza
+%nell'errore percentuale al variare del numero di campioni e della percentuale
+%minima di errore ammessa. \\
+%Come si evince dalle tabelle, i risultati sono più soddisfacenti con un maggior
+%numero di campioni.
 
 \begin{table}[h]
-    \caption{Test 1}
-    \begin{center}
-    \begin{tabular}{|l|l|l|l|} 
-    \hline 
-Gradi di libertà & \textbf{2} &  &  \\ \hline 
-Passo & \textbf{0.1000} & Campioni & \textbf{61} \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo &
-\textbf{{[}4.986 0.793{]}} \\ \hline 
-Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.00478}
-\\ \hline 
-Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{4} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.032} \\
+\caption{Test 1}
+\begin{center}
+\begin{tabular}{|l|l|l|l|} 
 \hline
-Flip massimi & \textbf{1000} & Flips & \textbf{55} \\ \hline 
-Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.478\%} \\
-\hline 
-    \end{tabular}
-    \end{center}
-    \end{table}
+\multicolumn{2}{|c|}{\textbf{Parametri in ingresso}} & \multicolumn{2}{c|}{\textbf {Valori in uscita}} \\ \hline
+Gradi di libertà  & \textbf{2} &  &  \\ \hline 
+Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
+Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}5.000 0.800{]}} \\ \hline 
+Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.00001} \\ \hline 
+Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{14} \\ \hline 
+Lunghezza minima & \textbf{0.00001} & Lunghezza finale & \textbf{0.00003} \\ \hline
+Flip massimi & \textbf{1000} & Flips & \textbf{177} \\ \hline 
+Tolleranza & \textbf{0.00100\%} & \textbf{Perc. di errore} & \textbf{0.00077\%} \\ \hline 
+\end{tabular} 
+\end{center}
+\end{table}
 
-    \begin{table}[h]
-        \caption{Test}
-        \begin{center}
-        \begin{tabular}{|l|l|l|l|} 
-        \hline
-        \multicolumn{2}{|c|}{Parametri in ingresso} & \multicolumn{2}{c|}{Valori in uscita} \\ \hline
-        Gradi di libertà  & \textbf{2} &  &  \\ \hline 
-        Passo & \textbf{0.1000} & Campioni & \textbf{61} \\ \hline 
-        Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.986 0.793{]}} \\ \hline 
-        Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.00478} \\ \hline 
-        Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{4} \\ \hline 
-        Lunghezza minima & \textbf{0.00001} & Lunghezza finale & \textbf{0.0325} \\ \hline
-        Flip massimi & \textbf{1000} & Flips & \textbf{55} \\ \hline 
-        Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.478\%} \\ \hline 
-        \end{tabular} 
-        \end{center}
-        \end{table}
-    
-
-\begin{table}[h]
-    \caption{Test 2}
-    \begin{center}
-    \begin{tabular}{|l|l|l|l|} 
-    \hline 
-Gradi di libertà & \textbf{2} &  &  \\ \hline 
-Passo & \textbf{0.0100} & Campioni & \textbf{601} \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo &
-\textbf{{[}4.998 0.800{]}} \\ \hline 
-Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.000560}
-\\ \hline 
-Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{7} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00406} \\
-\hline
-Flip massimi & \textbf{1000} & Flips & \textbf{90} \\ \hline 
-Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.0563\%} \\
-\hline 
-    \end{tabular} 
-    \end{center}
-    \end{table}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=15cm]{assets/figure10}
-        \caption{Test con due gradi di libertà senza vincoli.}
-\end{figure}
 
 \section{Minimo in 3 dimensioni senza vincoli}
 
 Proponiamo adesso dei test di ricerca del minimo non vincolato con 3 gradi di
-libertà. Differentemente dal caso in due dimensioni, la percentuale di errore
-aumenta all'aumentare del numero di campioni, a parità di percentuale di errore
-massima.
-
-\begin{table}[h]
-    \caption{Test 3}
-    \begin{center}
-    \begin{tabular}{|l|l|l|l|} 
-    \hline 
-Gradi di libertà & \textbf{3} &  &  \\ \hline 
-Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo &
-\textbf{{[}4.953 0.791 0.699{]}} \\ \hline 
-Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto &
-\textbf{0.00989} \\ \hline 
-Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{7} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00391} \\
-\hline
-Flip massimi & \textbf{1000} & Flips & \textbf{309} \\ \hline 
-Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.989\%} \\
-\hline 
-    \end{tabular}
-    \end{center}
-    \end{table}
+libertà. La percentuale di errore diminuisce all'aumentare del numero di campioni, 
+a parità di percentuale di errore massima. Tuttavia considerando .... 
+%Differentemente dal caso in due dimensioni, la percentuale di errore
+%aumenta all'aumentare del numero di campioni, a parità di percentuale di errore
+%massima.
 
     \begin{table}[h]
-        \caption{Test}
+        \caption{Test 1}
         \begin{center}
         \begin{tabular}{|l|l|l|l|} 
         \hline 
@@ -365,60 +304,19 @@ Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.989\%} \\
 
 
 \noindent
-Abbassando la percentuale di errore ammissibile, miglioriamo i risultati
-dell'algoritmo andando a raggiungere la lunghezza minima del lato del simplesso,
-che noi facciamo coincidere con la massima risoluzione rispetto alla quale
-valuteremo i parametri nello spazio di ricerca.
+%Abbassando la percentuale di errore ammissibile, miglioriamo i risultati
+%dell'algoritmo andando a raggiungere la lunghezza minima del lato del simplesso,
+%che noi facciamo coincidere con la massima risoluzione rispetto alla quale
+%valuteremo i parametri nello spazio di ricerca.
 
-\begin{table}[h] 
-    \caption{Test 4}
-    \begin{center}
-    \begin{tabular}{|l|l|l|l|} 
-    \hline 
-Gradi di libertà & \textbf{3} &  &  \\ \hline 
-Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo &
-\textbf{{[}4.981 0.796 0.699{]}} \\ \hline 
-Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto &
-\textbf{0.00398} \\ \hline 
-Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{9} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\
-\hline
-Flip massimi & \textbf{1000} & Flips & \textbf{363} \\ \hline 
-Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.398\%} \\
-\hline 
-    \end{tabular} 
-    \end{center}
-    \end{table}
 
 \noindent
-Ripetendo gli stessi test con un passo di campionamento più fitto, si nota che
-la percentuale di errore aumenta. Nel seguente test, la tolleranza $1\%$ causa
-l'arresto dell'algoritmo.
-
-\begin{table}[h] 
-    \caption{Test 5}
-    \begin{center}
-    \begin{tabular}{|l|l|l|l|} 
-    \hline 
-Gradi di libertà & \textbf{3} &  &  \\ \hline 
-Passo & \textbf{0.0100} & Campioni & \textbf{601} \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo &
-\textbf{{[}4.954 0.789 0.698{]}} \\ \hline 
-Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto &
-\textbf{0.00998} \\ \hline 
-Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{6} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.00781} \\
-\hline
-Flip massimi & \textbf{1000} & Flips & \textbf{259} \\ \hline 
-Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.998\%} \\
-\hline 
-    \end{tabular} 
-    \end{center}
-    \end{table}
+%Ripetendo gli stessi test con un passo di campionamento più fitto, si nota che
+%la percentuale di errore aumenta. Nel seguente test, la tolleranza $1\%$ causa
+%l'arresto dell'algoritmo.
 
     \begin{table}[h]
-        \caption{Test}
+        \caption{Test 2}
         \begin{center}
         \begin{tabular}{|l|l|l|l|} 
         \hline 
@@ -435,54 +333,14 @@ Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.998\%} \\
         \end{center}
         \end{table}
 \noindent
-Abbassando la percentuale di errore, si nota che l'algoritmo si ferma a causa
-della lunghezza finale del lato del simplesso troppo bassa. Questa è una
-conseguenza del fatto che, avendo aumentato la risoluzione con il passo di
-campionamento più fitto, la funziona sarà a sua volta più definita e quindi
-l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento è
-necessario.
+%Abbassando la percentuale di errore, si nota che l'algoritmo si ferma a causa
+%della lunghezza finale del lato del simplesso troppo bassa. Questa è una
+%conseguenza del fatto che, avendo aumentato la risoluzione con il passo di
+%campionamento più fitto, la funziona sarà a sua volta più definita e quindi
+%l'algoritmo si troverà con più probabilità in situazioni dove il dimezzamento è
+%necessario.
 
-\begin{table}[h] 
-    \caption{Test 6}
-    \begin{center}
-    \begin{tabular}{|l|l|l|l|} 
-    \hline 
-Gradi di libertà & \textbf{3} &  &  \\ \hline 
-Passo & \textbf{0.01000} & Campioni & \textbf{601} \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo &
-\textbf{{[}4.968 0.794 0.699{]}} \\ \hline 
-Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto &
-\textbf{0.00651} \\ \hline 
-Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{9} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\
-\hline
-Flip massimi & \textbf{1000} & Flips & \textbf{309} \\ \hline 
-Tolleranza & \textbf{0.100\%} & \textbf{Perc. di errore} & \textbf{0.651\%} \\
-\hline 
-    \end{tabular}
-    \end{center}
-    \end{table}
 
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=16cm]{assets/figure4}
-        \caption{Ricerca del minimo non vincolato con 3 parametri liberi, test 5.}
-\end{figure}
-\noindent 
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=14cm]{assets/figure5}
-        \caption{Dettaglio del politopo generato al test 5.}
-\end{figure}
-\noindent 
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=14cm]{assets/figure6}
-        \caption{Dettaglio del politopo generato al test 5.}
-\end{figure}
-\noindent
 
 \newpage
 \section{Minimo in 3 dimensioni con vincolo di disuguaglianza}
@@ -499,66 +357,41 @@ iniziale diverso, è evidente che i risultati sono anche molto diversi a seconda
 del punto.
 
 \begin{table}[h]
-    \caption{Test 7}
+    \caption{Test 1}
     \begin{center}
     \begin{tabular}{|l|l|l|l|} 
     \hline 
-Gradi di libertà & \textbf{3} &  &  \\ \hline 
-Passo & \textbf{0.100} &  &  \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo &
-\textbf{{[}4.093 0.991 0.495{]}} \\ \hline 
-Punto iniziale & \textbf{{[}4.000 0.400 0.100{]}} & Fobj nel punto &
-\textbf{0.320} \\ \hline 
-Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{9} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\
-\hline
-Flip massimi & \textbf{1000} & Flips & \textbf{104} \\ \hline 
-Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{32.012\%} \\
-\hline 
-    \end{tabular} 
-    \end{center}
-    \end{table}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=14cm]{assets/figure7}
-        \caption{Test con vincolo attivo di disuguaglianza.}
-\end{figure}
-\noindent
-
-\begin{table}[h]
-    \caption{Test 8}
-    \begin{center}
-    \begin{tabular}{|l|l|l|l|} 
-    \hline 
-Gradi di libertà & \textbf{3} &  &  \\ \hline 
-Passo & \textbf{0.100} &  &  \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo &
-\textbf{{[}3.406 0.885 0.442{]}} \\ \hline 
-Punto iniziale & \textbf{{[}3.000 0.400 0.100{]}} & Fobj nel punto &
-\textbf{0.449} \\ \hline 
-Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{9} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000980} \\
-\hline
-Flip massimi & \textbf{1000} & Flips & \textbf{122} \\ \hline 
-Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{44.908\%} \\
-\hline 
+    \multicolumn{2}{|c|}{\textbf{Parametri in ingresso}} & \multicolumn{2}{c|}{\textbf {Valori in uscita}} \\ \hline
+    Gradi di libertà  & \textbf{3} &  &  \\ \hline 
+    Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
+    Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.0926 0.999 0.495{]}} \\ \hline 
+    Punto iniziale & \textbf{{[}4.000 0.4000 0.100{]}} & Fobj nel punto & \textbf{0.320} \\ \hline 
+    Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{16} \\ \hline 
+    Lunghezza minima & \textbf{0.00001} & Lunghezza finale & \textbf{0.00001} \\ \hline
+    Flip massimi & \textbf{10000} & Flips & \textbf{214} \\ \hline 
+    Tolleranza & \textbf{0.00100\%} & \textbf{Perc. di errore} & \textbf{32.0113\%} \\ \hline 
     \end{tabular}
     \end{center}
     \end{table}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=16cm]{assets/figure8}
-        \caption{Test con vincolo attivo di disuguaglianza.}
-\end{figure}
-\noindent
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=13cm]{assets/figure9}
-        \caption{Test con vincolo attivo di disuguaglianza.}
-\end{figure}
+    
+    \begin{table}[h]
+        \caption{Test 2}
+        \begin{center}
+        \begin{tabular}{|l|l|l|l|} 
+        \hline 
+        \multicolumn{2}{|c|}{\textbf{Parametri in ingresso}} & \multicolumn{2}{c|}{\textbf {Valori in uscita}} \\ \hline
+        Gradi di libertà  & \textbf{3} &  &  \\ \hline 
+        Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
+        Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}3.407 0.885 0.443{]}} \\ \hline 
+        Punto iniziale & \textbf{{[}3.000 0.400 0.100{]}} & Fobj nel punto & \textbf{0.449} \\ \hline 
+        Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{16} \\ \hline 
+        Lunghezza minima & \textbf{0.00001} & Lunghezza finale & \textbf{0.00001} \\ \hline
+        Flip massimi & \textbf{10000} & Flips & \textbf{233} \\ \hline 
+        Tolleranza & \textbf{0.00100\%} & \textbf{Perc. di errore} & \textbf{44.891\%} \\ \hline 
+        \end{tabular}
+        \end{center}
+        \end{table}
+        
 
 \newpage
 \section{Minimo in 2 dimensioni: vincolo di uguaglianza}
@@ -574,34 +407,23 @@ agli stessi risultati in termine di percentuale di errore dalla funzione
 desiderata.
 
 \begin{table}[h]
-    \caption{Test 9 - Incognite $I$ e $Z$}
+    \caption{Test 1}
     \begin{center}
     \begin{tabular}{|l|l|l|l|} 
-    \hline 
-Gradi di libertà & \textbf{2} &  &  \\ \hline 
-Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
-Punto di minimo & \textbf{{[}5.000 0.700{]}} & Punto di minimo &
-\textbf{{[}4.097 0.998 0.499{]}} \\ \hline 
-Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.354} \\
-\hline 
-Lunghezza iniziale & \textbf{0.200} & Dimezzamenti & \textbf{9} \\ \hline 
-Lunghezza minima & \textbf{0.00100} & Lunghezza finale & \textbf{0.000680} \\
-\hline
-Flip massimi & \textbf{1000} & Flips & \textbf{151} \\ \hline 
-Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{35.355\%} \\
-\hline 
+    \hline
+    \multicolumn{2}{|c|}{\textbf{Parametri in ingresso}} & \multicolumn{2}{c|}{\textbf {Valori in uscita}} \\ \hline
+    Gradi di libertà  & \textbf{2} &  &  \\ \hline 
+    Passo & \textbf{0.10000} & Campioni & \textbf{61} \\ \hline 
+    Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.106 0.495{]}} \\ \hline 
+    Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.352} \\ \hline 
+    Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{16} \\ \hline 
+    Lunghezza minima & \textbf{0.00001} & Lunghezza finale & \textbf{0.00001} \\ \hline
+    Flip massimi & \textbf{1000} & Flips & \textbf{239} \\ \hline 
+    Tolleranza & \textbf{0.00100\%} & \textbf{Perc. di errore} & \textbf{35.203\%} \\ \hline 
     \end{tabular} 
     \end{center}
     \end{table}
-
-
-
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=15cm]{assets/figure11}
-        \caption{Test con vincolo di uguaglianza.}
-\end{figure}
+    
 
 \newpage
 \section*{Risultati e considerazioni}
@@ -622,20 +444,20 @@ precisione della \emph{terza cifra decimale}. La motivazione risiede nel
 fatto che, per limiti di realizzazione fisica delle spire, non riusciremo a
 garantire una precisione maggiore del millimetro per il raggio della spira
 incognita. \\ 
-Inoltre, siccome il minimo spostamento del simplesso nello spazio di ricerca
+(RIVIDERE)Inoltre, siccome il minimo spostamento del simplesso nello spazio di ricerca
 sarà proprio vincolato da questo limite realizzativo, anche la precisione delle
-altre due variabili incognite si fermerà alla terza cifra decimale. \\ \\
+altre due variabili incognite si fermerà alla terza cifra decimale. (RIVEDERE)\\ \\
 Nel test preliminare con due gradi di libertà, il punto di minimo ottenuto
 risulta essere \\ \\
-\centerline{ $I_{2} = 4.998 \pm 0.001 A$ \\ $R_{2} = 0.800 \pm 0.001m$ \\ $Z_{2}
+\centerline{ $I_{2} = 5.000 \pm 0.001 A$ \\ $R_{2} = 0.800 \pm 0.001m$ \\ $Z_{2}
 = 0.7m$} \\ \\
 con rispetto ai parametri iniziali e le condizioni di arresto scelte.
-L'algoritmo si è fermato dopo 90 ribaltamenti e 7 dimezzamenti, a causa della
+L'algoritmo si è fermato dopo 177 ribaltamenti e 14 dimezzamenti, a causa della
 percentuale di errore scesa sotto la soglia che abbiamo ritenuto sufficiente
 all'avvio della computazione. Se la percentuale di errore massima fosse stata
 minore, i risultati ottenuti sarebbero potuti essere ancora migliori. \\
 \\
-L'esperimento effettuato in uno spazio di ricerca tridimensionale senza vincoli
+(RIVEDE)L'esperimento effettuato in uno spazio di ricerca tridimensionale senza vincoli
 ha dato dei risultati inattesi, in quanto ci si aspettava che la precisione
 migliorasse all'aumentare del numero di campioni della funzione obiettivo. \\
 Il motivo per il quale invece le prestazioni sono state migliori in presenza di
@@ -652,24 +474,26 @@ sistema da analizzare, l'aver raggiunto più velocemente questa condizione ha
 comportato dei risultati più grossolani di quanto ci si aspettava. Se i limiti
 di realizzazione delle componenti fisiche fossero stati più spinti, l'algoritmo
 sarebbe andato più in fondo e avrebbe garantito dei risultati paragonabili in
-qualità a quelli ottenuti nel caso in due dimensioni visto precedentemente. Il
+qualità a quelli ottenuti nel caso in due dimensioni visto precedentemente.
+(RIVIDERE)
+Il
 punto di minimo ottenuto quindi nell'esperimento con 3 gradi di libertà senza
 vincoli è \\ \\
-\centerline{ $I_{2} = 4.981 \pm 0.001 A$ \\ $R_{2} = 0.796 \pm 0.001m$ \\ $Z_{2}
-= 0.699 \pm 0.001m$} \\ \\
+\centerline{ $I_{2} = 4.999 \pm 0.001 A$ \\ $R_{2} = 0.799 \pm 0.001m$ \\ $Z_{2}
+= 0.700 \pm 0.001m$} \\ \\
 Nel caso della ricerca del minimo in 3D con vincolo di disuguaglianza invece,
 evince chiaramente l'importanza della scelta del punto iniziale. Cambiando il
 punto negli esperimenti effettuati, infatti, si possono anche avere discrepanze
 di 10 punti percentuali rispetto all'errore ottenuto nelle stesse condizioni, ma
 punto iniziale diverso. Il punto di minimo ottenuto in questo caso è \\ \\
-\centerline{ $I_{2} = 4.093 \pm 0.001 A$ \\ $R_{2} = 0.991 \pm 0.001m$ \\ $Z_{2}
+\centerline{ $I_{2} = 4.092 \pm 0.001 A$ \\ $R_{2} = 0.999 \pm 0.001m$ \\ $Z_{2}
 = 0.495 \pm 0.001m$} \\ \\
 Il quarto ed ultimo esperimento si è invece concentrato sulla ricerca del minimo
 in presenza di un vincolo di uguaglianza, che fa ridurre la dimensione dello
 spazio di ricerca da 3 a 2. Con i parametri iniziali e le condizioni di arresto
 scelte, si ottiene un punto di minimo di \\ \\
-\centerline{ $I_{2} = 4.097 \pm 0.001 A$ \\ $R_{2} = 0.998 \pm 0.001m$ \\ $Z_{2}
-= 0.499 \pm 0.001m$} \\ \\
+\centerline{ $I_{2} = 4.106 \pm 0.001 A$ \\ $R_{2} = 0.999 \pm 0.001m$ \\ $Z_{2}
+= 0.495 \pm 0.001m$} \\ \\
 Di particolare interesse è stata l'applicazione dei limiti di progetto
 preliminari imposti ad inizio trattazione. \\ 
 Siccome nè raggio nè posizione della spira possono oltrepassare la lunghezza di
@@ -681,8 +505,7 @@ quindi chiaro che l'algoritmo tende a muoversi verso la direzione del minimo
 ideale fino a raggiungere il valore massimo ammissibile della $Z = 0.5m$.
 
 
-
-
+    
 
 \end{document}
 
