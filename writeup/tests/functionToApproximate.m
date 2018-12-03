@@ -2,9 +2,9 @@ close all
 clear all
 clc
 
-testI = [4.968 4.093 4.097];
-testR = [0.794 0.991 1];
-testZ = [0.699 0.495 0.499];
+testI = [4.999 4.092 4.106];
+testR = [0.799 0.999 1];
+testZ = [0.7 0.495 0.495];
 
 % coil radius [m]
 R = [0.7 0.8 0.6];
