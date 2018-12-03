@@ -26,7 +26,7 @@ una spira.
 Il sistema è composto da un certo numero di spire simmetriche (supporremo $n=6$)
 concentriche rispetto allo stesso asse $z$. I parametri di progetto, ovvero
 posizione, raggio e intensità di corrente, sono noti per tutte le spire tranne
-che per una coppia.
+che per una coppia. Le correnti sono concordi per tutte le spire. 
 
 \begin{figure}[H]
     \centering
@@ -58,8 +58,8 @@ $r{\theta}$, il campo magnetico complessivo sull’asse $z$ sarà:
 
 \begin{align*}
     B_{z}
-    &=\frac{\mu_{0}}{4{\pi}}\left(\sum_{i=1}^{n/2}\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)\\
-    &=\frac{\mu_{0}}{2}\left(\sum_{i=1}^{n/2}\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)
+    &=\frac{\mu_{0}}{4{\pi}}\left(\sum_{i=1}^{n}\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{2{\pi}I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)\\
+    &=\frac{\mu_{0}}{2}\left(\sum_{i=1}^{n}\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}-z\right)^{2}+R_{i}^{2}\right)^{3/2}}+\frac{I_{i}R_{i}^{2}}{\left(\left(Z_{i}+z\right)^{2}+R_{i}^{2}\right)^{3/2}}\right)
 \end{align*}
 
 \noindent
@@ -83,7 +83,7 @@ norma si scriverà come:
 
 \begin{equation}
     \begin{split}
-        ||B_{z}-\tilde{B_{z}}||
+        ||B_{z_{2}}-\tilde{B_{z_{2}}}||
         =& \Bigl|\Bigl|\frac{\mu_{0}}{2}(\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}})+ \\
          & -\frac{\mu_{0}}{2}(\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}-z)^{2}+\tilde{R_{2}}^{2})^{3/2}}-\frac{\tilde{I_{2}}\tilde{R_{2}}^{2}}{((\tilde{Z_{2}}+z)^{2}+\tilde{R_{2}}^{2})^{3/2}})\Bigr|\Bigr| \\
         =& \frac{\mu_{0}}{2}\Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z)^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z)^{2}+R_{2}^{2})^{3/2}}+ \\
@@ -271,6 +271,25 @@ Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.478\%} \\
     \end{center}
     \end{table}
 
+    \begin{table}[h]
+        \caption{Test}
+        \begin{center}
+        \begin{tabular}{|l|l|l|l|} 
+        \hline
+        \multicolumn{2}{|c|}{Parametri in ingresso} & \multicolumn{2}{c|}{Valori in uscita} \\ \hline
+        Gradi di libertà  & \textbf{2} &  &  \\ \hline 
+        Passo & \textbf{0.1000} & Campioni & \textbf{61} \\ \hline 
+        Punto di minimo & \textbf{{[}5.000 0.800{]}} & Punto di minimo & \textbf{{[}4.986 0.793{]}} \\ \hline 
+        Punto iniziale & \textbf{{[}3.000 0.300{]}} & Fobj nel punto & \textbf{0.00478} \\ \hline 
+        Lunghezza iniziale & \textbf{0.300} & Dimezzamenti & \textbf{4} \\ \hline 
+        Lunghezza minima & \textbf{0.00001} & Lunghezza finale & \textbf{0.0325} \\ \hline
+        Flip massimi & \textbf{1000} & Flips & \textbf{55} \\ \hline 
+        Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.478\%} \\ \hline 
+        \end{tabular} 
+        \end{center}
+        \end{table}
+    
+
 \begin{table}[h]
     \caption{Test 2}
     \begin{center}
@@ -326,6 +345,25 @@ Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.989\%} \\
     \end{center}
     \end{table}
 
+    \begin{table}[h]
+        \caption{Test}
+        \begin{center}
+        \begin{tabular}{|l|l|l|l|} 
+        \hline 
+        \multicolumn{2}{|c|}{\textbf{Parametri in ingresso}} & \multicolumn{2}{c|}{\textbf{Valori in uscita}} \\ \hline
+        Gradi di libertà  & \textbf{3} &  &  \\ \hline 
+        Passo & \textbf{0.100} & Campioni & \textbf{61} \\ \hline 
+        Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.999 0.799 0.700{]}} \\ \hline 
+        Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto & \textbf{0.00004} \\ \hline 
+        Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{16} \\ \hline 
+        Lunghezza minima & \textbf{0.00001} & Lunghezza finale & \textbf{0.00001} \\ \hline
+        Flip massimi & \textbf{1000} & Flips & \textbf{654} \\ \hline 
+        Tolleranza & \textbf{0.00100\%} & \textbf{Perc. di errore} & \textbf{0.00417\%} \\ \hline 
+        \end{tabular}
+        \end{center}
+        \end{table}
+
+
 \noindent
 Abbassando la percentuale di errore ammissibile, miglioriamo i risultati
 dell'algoritmo andando a raggiungere la lunghezza minima del lato del simplesso,
@@ -379,6 +417,23 @@ Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{0.998\%} \\
     \end{center}
     \end{table}
 
+    \begin{table}[h]
+        \caption{Test}
+        \begin{center}
+        \begin{tabular}{|l|l|l|l|} 
+        \hline 
+        \multicolumn{2}{|c|}{\textbf{Parametri in ingresso}} & \multicolumn{2}{c|}{\textbf{Valori in uscita}} \\ \hline
+        Gradi di libertà  & \textbf{3} &  &  \\ \hline 
+        Passo & \textbf{0.0100} & Campioni & \textbf{601} \\ \hline 
+        Punto di minimo & \textbf{{[}5.000 0.800 0.700{]}} & Punto di minimo & \textbf{{[}4.999 0.799 0.700{]}} \\ \hline 
+        Punto iniziale & \textbf{{[}3.000 0.300 0.500{]}} & Fobj nel punto & \textbf{0.00002} \\ \hline 
+        Lunghezza iniziale & \textbf{0.500} & Dimezzamenti & \textbf{16} \\ \hline 
+        Lunghezza minima & \textbf{0.00001} & Lunghezza finale & \textbf{0.00001} \\ \hline
+        Flip massimi & \textbf{1000} & Flips & \textbf{709} \\ \hline 
+        Tolleranza & \textbf{0.00100\%} & \textbf{Perc. di errore} & \textbf{0.00205\%} \\ \hline 
+        \end{tabular}
+        \end{center}
+        \end{table}
 \noindent
 Abbassando la percentuale di errore, si nota che l'algoritmo si ferma a causa
 della lunghezza finale del lato del simplesso troppo bassa. Questa è una
@@ -539,6 +594,9 @@ Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{35.355\%} \\
     \end{center}
     \end{table}
 
+
+
+
 \begin{figure}[H]
     \centering
         \includegraphics[width=15cm]{assets/figure11}
@@ -547,6 +605,9 @@ Tolleranza & \textbf{1.000\%} & \textbf{Perc. di errore} & \textbf{35.355\%} \\
 
 \newpage
 \section*{Risultati e considerazioni}
+
+
+
 
 \begin{figure}[H]
     \centering
@@ -619,4 +680,12 @@ della spira incognita è maggiore del massimo imposto dai vincoli realizzativi. 
 quindi chiaro che l'algoritmo tende a muoversi verso la direzione del minimo
 ideale fino a raggiungere il valore massimo ammissibile della $Z = 0.5m$.
 
+
+
+
+
 \end{document}
+
+
+
+

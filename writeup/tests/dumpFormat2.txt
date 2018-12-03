@@ -2,7 +2,8 @@
 \\caption{Test}
 \\begin{center}
 \\begin{tabular}{|l|l|l|l|} 
-\\hline 
+\\hline
+\\multicolumn{2}{|c|}{Parametri in ingresso} & \\multicolumn{2}{c|}{Valori in uscita} \\\\ \\hline
 Gradi di libertà & \\textbf{%d} &  &  \\\\ \\hline 
 Passo & \\textbf{%.5f} & Campioni & \\textbf{%d} \\\\ \\hline 
 Punto di minimo & \\textbf{{[}%.5f %.5f{]}} & Punto di minimo & \\textbf{{[}%.5f %.5f{]}} \\\\ \\hline 
