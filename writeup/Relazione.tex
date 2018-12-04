@@ -91,12 +91,13 @@ norma si scriverà come:
 
 \noindent
 La funzione che quindi descrive la discrepanza del campo magnetico da
-progettaree quello desiderato su tutto l'asse $z$ è 
+progettare quello desiderato su tutto l'asse $z$ è 
 
 \[F_{obj}=2\int_{0}^{+\infty}|B_{z_{2}}-\tilde{B_{z_{2}}}|dz\]
 
-\[F_{obj}=\frac{1}{N_{p}}\sum\limits_{k=1}^{Np}
-||B_{z_{2k}}-\tilde{B_{z_{2k}}}||\]
+\[F_{obj}=\lim_{Np \rightarrow + \infty}\frac{2}{N_{p}}\sum\limits_{k=1}^{Np/2} ||B_{z_{2k}}-\tilde{B_{z_{2k}}}||\]
+
+\[F_{obj} \approx \frac{2}{N_{p}}\sum\limits_{k=1}^{Np/2} ||B_{z_{2k}}-\tilde{B_{z_{2k}}}||\]
 
 \section*{Campionamento e normalizzazione}
 
@@ -121,7 +122,7 @@ come:
 \begin{equation}
     \begin{split}
         F_{obj}(I_{2},R_{2},Z_{2}) =
-        & \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl[ \frac{1}{Np} \sum\limits_{k=1}^{Np} \Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z_{k})^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z_{k})^{2}+R_{2}^{2})^{3/2}}-\tilde{B^*_{z_{2k}}}\Bigr|\Bigr|^{2}\biggr]^{\!1/2}
+        & \frac{1}{{\tiny <} \tilde{B_{z}}{\tiny >}} \Biggl[ \frac{2}{Np} \sum\limits_{k=1}^{Np/2} \Bigl|\Bigl|\frac{I_{2}R_{2}^{2}}{((Z_{2}-z_{k})^{2}+R_{2}^{2})^{3/2}}+\frac{I_{2}R_{2}^{2}}{((Z_{2}+z_{k})^{2}+R_{2}^{2})^{3/2}}-\tilde{B^*_{z_{2k}}}\Bigr|\Bigr|^{2}\biggr]^{\!1/2}
     \end{split} 
 \end{equation}
 \noindent
