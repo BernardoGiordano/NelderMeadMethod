@@ -93,11 +93,11 @@ norma si scriverà come:
 La funzione che quindi descrive la discrepanza del campo magnetico da
 progettare quello desiderato su tutto l'asse $z$ è 
 
-\[F_{obj}=2\int_{0}^{+\infty}|B_{z_{2}}-\tilde{B_{z_{2}}}|dz\]
+\[F_{obj}(I_{2},R_{2},Z_{2})=\biggr(2\int_{0}^{+\infty}[B_{z_{2}}(I_{2},R_{2},Z_{2},z)-\tilde{B_{z_{2}}}(z)]^{2}dz\biggl)^{1/2}\]
 
-\[F_{obj}=\lim_{Np \rightarrow + \infty}\frac{2}{N_{p}}\sum\limits_{k=1}^{Np/2} ||B_{z_{2k}}-\tilde{B_{z_{2k}}}||\]
+\[F_{obj}(I_{2},R_{2},Z_{2})=\biggr(\lim_{Np \rightarrow + \infty}\frac{2}{N_{p}}\sum\limits_{k=1}^{Np/2} ||B_{z_{2k}}(I_{2},R_{2},Z_{2})-\tilde{B_{z_{2k}}}||^{2}\biggl)^{1/2}\]
 
-\[F_{obj} \approx \frac{2}{N_{p}}\sum\limits_{k=1}^{Np/2} ||B_{z_{2k}}-\tilde{B_{z_{2k}}}||\]
+\[F_{obj}(I_{2},R_{2},Z_{2}) \approx \biggr(\frac{2}{N_{p}}\sum\limits_{k=1}^{Np/2} ||B_{z_{2k}}(I_{2},R_{2},Z_{2})-\tilde{B_{z_{2k}}}||^{2}\biggl)^{1/2}\]
 
 \section*{Campionamento e normalizzazione}
 
